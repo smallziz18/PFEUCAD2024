@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('prix');
             $table->string('categorie');
+            $table->string('url_image')->unique();
+            $table->foreign('url_image')->references('url_image')->on('images');
             $table->boolean('statu')->default(false);
             $table->timestamps();
 

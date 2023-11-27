@@ -28,6 +28,7 @@ class AnnonceFactory extends Factory
             'prix' => fake()->randomFloat(2, 10, 1000),
             'categorie' => fake()->word,
             'statu' => fake()->boolean,
+            'url_image' => Image::all()->random()->url_image,
 
 
         ];
