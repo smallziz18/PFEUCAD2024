@@ -23,6 +23,12 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
         <div>
+            <x-input-label for="name" :value="__('prenom')" />
+            <x-text-input id="prenom" name="prenom" type="text" class="mt-1 block w-full" :value="old('prenom', $user->prenom)" required autofocus autocomplete="prenom" />
+            <x-input-error class="mt-2" :messages="$errors->get('prenom')" />
+        </div>
+
+        <div>
             <x-input-label for="telephone" :value="__('telephone')" />
             <x-text-input id="telephone" name="telephone" type="text" class="mt-1 block w-full" :value="old('telepohne', $user->telephone)" required autofocus autocomplete="telephone" />
             <x-input-error class="mt-2" :messages="$errors->get('telephone')" />
@@ -36,7 +42,7 @@
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
-                        {{ __('Votre adresse e-mail n\'est pas vérifiée.') }}
+                        {{ __('Votre adresse e-mail n est pas vérifiée.') }}
 
                         <button form="send-verification" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                             {{ __('Cliquez ici pour renvoyer le courriel de vérification.') }}
