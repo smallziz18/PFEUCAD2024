@@ -238,7 +238,7 @@ Alternatively if you want to just have a single hero
         @foreach($annonces as $annonce)
 
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                <a href="#">
+                <a href="{{ url('/annonce/' . $annonce->id) }}">
 
                     @if ($annonce->url_image)
                         <img src="{{ $annonce->first()->url_image }}" alt="">
