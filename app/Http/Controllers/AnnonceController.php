@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AnnonceController extends Controller
 {
+    public function show($id)
+    {
+        $annonce = Annonce::where('id', $id)->first();
+        if (!$annonce) {
+        abort(404);
+    }
+
+        return view('annonces.show', ['annonce' => $annonce]);
+    }
     public function store(Request $request){
         $validatedData = $request->validate([
             'titre' => 'required|string|max:255',
@@ -50,16 +59,15 @@ class AnnonceController extends Controller
         ]);
 
 
-        // Récupérer l'annonce à mettre à jour
         $annonce = Annonce::findOrFail($id);
 
-        // Mettre à jour les champs de l'annonce
+
         $annonce->titre = $request->input('titre');
         $annonce->description = $request->input('description');
         $annonce->prix= $request->input('prix');
         $annonce->categorie=$request->input('categorie');
 
-        // Enregistrer les modifications
+
         $annonce->save();
 
         return redirect()->route('userannonce')->with('id','');

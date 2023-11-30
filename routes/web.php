@@ -34,6 +34,10 @@ Route::middleware(['auth','verified'])->group(function () {
 });
 
 
+Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
+
+
+
 
 Route::get('/', function () {
     $annonces = \App\Models\Annonce::with('images', 'user')->get();
