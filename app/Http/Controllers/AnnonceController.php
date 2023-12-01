@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AnnonceController extends Controller
 {
     public function show($id)
     {
         $annonce = Annonce::where('id', $id)->first();
-        if (!$annonce) {
-        abort(404);
-    }
 
-        return view('annonces.show', ['annonce' => $annonce]);
+        if (!$annonce) {
+            abort(404);
+        }
+
+        $images = DB::table('annonce')
+            ->join('images', 'annonce.url_image', '=', 'images.url_image')
+            ->select('images.url_image AS image_url')
+            ->where('annonce.id', $id)
+            ->get();
+
+        return view('annonces.show', compact('annonce', 'images'));
     }
     public function store(Request $request){
         $validatedData = $request->validate([

@@ -23,7 +23,9 @@ class AnnonceResource extends Resource
     {
         return $form
             ->schema([
-
+                Forms\Components\TextInput::make('user_id')
+                    ->required()
+                    ->maxLength(255),
 
                 Forms\Components\TextInput::make('titre')
                     ->required()
@@ -40,6 +42,7 @@ class AnnonceResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('url_image')
                     ->image()
+                    ->multiple()
                     ->required(),
 
             ]);
@@ -52,7 +55,8 @@ class AnnonceResource extends Resource
                 Tables\Columns\TextColumn::make('user_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('url_image'),
+                Tables\Columns\ImageColumn::make('url_image')
+                ->sortable(),
                 Tables\Columns\TextColumn::make('titre')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('prix')
