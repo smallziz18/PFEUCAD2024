@@ -241,7 +241,7 @@ Alternatively if you want to just have a single hero
                 <a href="{{ url('/annonce/' . $annonce->id) }}">
 
                     @if ($annonce->url_image)
-                        <img src="{{ $annonce->first()->url_image }}" alt="pas d'image">
+                        <img class="hover:grow hover:shadow-lg" src="{{ $annonce->url_image }}" alt="pas d'image">
 
                     @else
                         <!-- Afficher un message si aucune image n'est associée à l'annonce -->
