@@ -2,63 +2,32 @@
 
 namespace App\Livewire;
 
-use App\Models\Annonce;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Livewire\Component;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
 
-use Illuminate\Contracts\View\View;
-
-
-class Addannonce extends Component implements HasForms
+class Addannonce extends Component
 {
-    use InteractsWithForms;
-    public $titre;
-    public $categorie;
+    public $nom;
     public $description;
+    public $categories = [];
+    public $descriptionDetaillee;
     public $prix;
-    public $url_image;
+    public $photos;
 
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-
-
-                TextInput::make('titre')
-                    ->required()
-                    ->maxLength(255),
-                Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                TextInput::make('prix')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('categorie')
-                    ->required()
-                    ->maxLength(255),
-
-            ])
-        ->statePath('data')
-        ->model(Annonce::class);
-
-    }
-    public function create(): void
-    {
-        dd($this->form->getState());
-    }
     public function render()
     {
-        return view('livewire.addannonce');
+        $categories = [
+            ['id' => 1, 'nom' => 'Catégorie 1'],
+            ['id' => 2, 'nom' => 'Catégorie 2'],
+            // Ajoutez d'autres catégories selon vos besoins
+        ];
+
+        return view('livewire.addannonce', compact('categories'));
+    }
+
+    public function ajouterProduit()
+    {
+        // Ajoutez ici la logique pour enregistrer le produit dans la base de données
+        // Utilisez les propriétés $nom, $description, $categories, $descriptionDetaillee, $prix et $photos
+        // Assurez-vous de valider les données avant de les enregistrer
     }
 }
