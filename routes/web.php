@@ -52,8 +52,6 @@ Route::post('/email/verification-notification',function (\Illuminate\Http\Reques
 Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
 
 
-
-
 Route::get('/', function () {
     $annonces = \App\Models\Annonce::with('images', 'user')->get();
     return view('welcome', compact('annonces'));

@@ -1,10 +1,10 @@
 
 <div class="w-screen h-screen flex items-center justify-center">
     <div>
-        <form wire:submit.prevent="Addannonce">
+        <form wire:submit.prevent="ajouterProduit">
             <div class="mb-4">
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom du produit</label>
-                <input wire:model="nom" type="text" id="nom" name="nom" class="mt-1 p-2 border rounded-md w-full">
+                <input wire:model="titre" type="text" id="nom" name="nom" class="mt-1 p-2 border rounded-md w-full">
                 @error('nom') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
@@ -18,7 +18,7 @@
                 <label class="block text-sm font-medium text-gray-700">Catégorie</label>
                 @foreach($categories as $categorie)
                     <div class="flex items-center">
-                        <input wire:model="categories" type="checkbox" id="{{ $categorie['id'] }}" value="{{ $categorie['id'] }}" class="mr-2">
+                        <input wire:model="categorie" type="checkbox" id="{{ $categorie['id'] }}" value="{{ $categorie['id'] }}" class="mr-2">
                         <label for="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</label>
                     </div>
                 @endforeach
