@@ -16,13 +16,24 @@
 
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700">Catégorie</label>
-                @foreach($categories as $categorie)
+
                     <div class="flex items-center">
-                        <input wire:model="categorie" type="checkbox" id="{{ $categorie['id'] }}" value="{{ $categorie['id'] }}" class="mr-2">
-                        <label for="{{ $categorie['id'] }}">{{ $categorie['nom'] }}</label>
+                        <input wire:model="categorie" name="categorie" type="radio" id="1" value="1" class="mr-2">
+                        <label for="1">1</label>
                     </div>
-                @endforeach
-                @error('categories') <span class="text-red-500">{{ $message }}</span> @enderror
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="2" value="2" class="mr-2">
+                    <label for="2">2</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="3" value="3" class="mr-2">
+                    <label for="3">3</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="4" value="4" class="mr-2">
+                    <label for="4">4</label>
+                </div>
+
             </div>
 
             <div class="mb-4">
@@ -39,7 +50,7 @@
 
             <div class="mb-4">
                 <label for="photos" class="block text-sm font-medium text-gray-700">Photos</label>
-                <input wire:model="photos" type="file" id="photos" name="photos" class="mt-1 p-2 border rounded-md w-full">
+                <input wire:model="images" type="file" accept="image/png , image/jpeg" id="photos" name="images" class="mt-1 p-2 border rounded-md w-full">
                 @error('photos') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 

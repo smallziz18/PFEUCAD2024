@@ -3,29 +3,28 @@
 namespace App\Livewire;
 
 use App\Models\Annonce;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Addannonce extends Component
 {
+    use WithFileUploads;
     public $titre;
     public $description;
-    public $categories = [];
+
     public $categorie;
     public $descriptionDetaillee;
     public $prix;
 
-    public $photos;
+    public $images;
 
     public function render()
     {
-        $categorie = [
-            ['id' => 1, 'nom' => 'Catégorie 1'],
-            ['id' => 2, 'nom' => 'Catégorie 2'],
-            // Ajoutez d'autres catégories selon vos besoins
-        ];
 
-        return view('livewire.addannonce', compact('categorie'));
+
+        return view('livewire.addannonce');
     }
 
     public function ajouterProduit()
@@ -37,15 +36,17 @@ class Addannonce extends Component
             'user_id'=>Auth::id(),
             'description'=>$this->description,
             'categorie'=>$this->categorie,
+            'url_image'=>$this->titre
 
 
             // Ajoutez d'autres champs si nécessaire
         ]);
 
+
         // Réinitialiser les propriétés après la sauvegarde
-        $this->titre = '';
-        $this->prix = '';
-        $this->description = '';
+        $this->reset('titre','description','prix','categorie','image');
+
+
 
 
         // Envoyer un message de succès
