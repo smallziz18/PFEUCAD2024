@@ -63,7 +63,7 @@ Route::get('/annonceadded', function () {
 
     return view('annonceadded');
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('annonceadded');
 
 Route::get('/userannonce', function () {
 
