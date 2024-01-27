@@ -44,7 +44,7 @@ class Addannonce extends Component
 
 
         // Réinitialiser les propriétés après la sauvegarde
-        $this->reset('titre','description','prix','categorie','image');
+        $this->reset('titre','description','prix','categorie');
 
 
 
