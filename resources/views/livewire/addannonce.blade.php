@@ -4,7 +4,7 @@
         <form wire:submit.prevent="ajouterProduit">
             <div class="mb-4">
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom du produit</label>
-                <input wire:model="titre" type="text" id="nom" name="nom" class="mt-1 p-2 border rounded-md w-full">
+                <input wire:model="titre" type="text" id="nom" name="titre" class="mt-1 p-2 border rounded-md w-full">
                 @error('nom') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
