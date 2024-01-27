@@ -12,18 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favoris', function (Blueprint $table) {
-            $table->unsignedBigInteger('idUser');
-            $table->unsignedBigInteger('idAnnonce');
-            $table->foreign('idUser')->references('id')->on('users');
-            $table->primary('idUser');
-            $table->foreign('idAnnonce')->references('id')->on('annonce');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('annonce_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('annonce_id')->references('id')->on('annonces');
+            $table->primary(['user_id', 'annonce_id']);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('favoris');

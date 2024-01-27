@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('annonce', function (Blueprint $table) {
+        Schema::create('annonces', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('prix');
             $table->string('categorie');
-            $table->string('url_image')->unique();
-            $table->foreign('url_image')->references('url_image')->on('images');
             $table->boolean('statu')->default(false);
             $table->timestamps();
 
