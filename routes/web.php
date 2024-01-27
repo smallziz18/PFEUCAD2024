@@ -59,9 +59,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
+Route::get('/annonceadded', function () {
 
-    return view('dashboard');
+    return view('annonceadded');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 

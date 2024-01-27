@@ -47,5 +47,7 @@ class Addannonce extends Component
 
         // Envoyer un message de succès
         session()->flash('message', 'Annonce enregistrée avec succès.');
+        return redirect()->to('annonceadded');
+
     }
 }
