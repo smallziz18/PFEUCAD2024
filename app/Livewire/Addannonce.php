@@ -11,46 +11,41 @@ use Livewire\WithFileUploads;
 class Addannonce extends Component
 {
     use WithFileUploads;
+
     public $titre;
     public $description;
-
     public $categorie;
-    public $descriptionDetaillee;
     public $prix;
-
     public $images;
 
     public function render()
     {
-
-
         return view('livewire.addannonce');
     }
 
     public function ajouterProduit()
     {
+        $this->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'categorie' => 'required|string',
+            'prix' => 'required|numeric',
 
-       $annonce= Annonce::create([
-            'titre' => $this->titre,
-            'prix' => $this->prix,
-            'user_id'=>Auth::id(),
-            'description'=>$this->description,
-            'categorie'=>$this->categorie,
-
-
-
-            // Ajoutez d'autres champs si nécessaire
         ]);
 
+        $annonce = Annonce::create([
+            'user_id' => Auth::id(),
+            'titre' => $this->titre,
+            'prix' => $this->prix,
+            'description' => $this->description,
+            'categorie' => $this->categorie,
+
+        ]);
 
         // Réinitialiser les propriétés après la sauvegarde
-        $this->reset('titre','description','prix','categorie');
-
-
-
+        $this->reset('titre', 'description', 'prix', 'categorie');
 
         // Envoyer un message de succès
         session()->flash('message', 'Annonce enregistrée avec succès.');
     }
-
 }

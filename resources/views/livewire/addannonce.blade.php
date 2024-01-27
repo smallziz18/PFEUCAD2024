@@ -11,6 +11,7 @@
             <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                 <textarea wire:model="description" id="description" name="description" class="mt-1 p-2 border rounded-md w-full"></textarea>
+
                 @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
@@ -36,11 +37,7 @@
 
             </div>
 
-            <div class="mb-4">
-                <label for="descriptionDetaillee" class="block text-sm font-medium text-gray-700">Description détaillée</label>
-                <textarea wire:model="descriptionDetaillee" id="descriptionDetaillee" name="descriptionDetaillee" class="mt-1 p-2 border rounded-md w-full"></textarea>
-                @error('descriptionDetaillee') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
+
 
             <div class="mb-4">
                 <label for="prix" class="block text-sm font-medium text-gray-700">Prix</label>
