@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-         /*$adminUser=User::factory()->create([
+         $adminUser=User::factory()->create([
           'email'=> 'admin@example.com',
             'name'=>'Admin',
           'prenom'=>'user',
@@ -29,20 +29,14 @@ class DatabaseSeeder extends Seeder
           ]);
          $adminRole = Role::create(['name'=>'admin']);
         $adminUser->assignRole($adminRole);
-*/
-        Image::factory(50)->create();
-        Annonce::factory(50)->create();
-        $annonces = Annonce::factory(10)->create();
 
-        // Créer 20 images
-        $images = Image::factory(50)->create();
-        $annonces->each(function ($annonce) use ($images) {
-            // Prendre des images aléatoires
-            $randomImages = $images->random(random_int(1, 5));
 
-            // Attacher ces images à l'annonce actuelle
-            $annonce->images()->attach($randomImages);
-        });
+
+        User::factory()->count(10)->create();
+        Annonce::factory()->count(50)->create();
+
+
+
 
 
 

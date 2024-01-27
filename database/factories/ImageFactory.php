@@ -2,26 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Annonce;
 use App\Models\Image;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ImageFactory extends Factory
 {
     protected $model = Image::class;
 
-    public function definition()
+    public function definition(): array
     {
-
-
-
-
         return [
-
-            'user_id' => User::all()->random()->id,
-
-            'url_image' => $this->faker->imageUrl(), // Génération aléatoire de l'URL de l'image
+            'url_image' => $this->faker->imageUrl(),
         ];
     }
 }

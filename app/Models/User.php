@@ -7,6 +7,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,9 +56,11 @@ class User extends Authenticatable implements MustVerifyEmail,FilamentUser
         'password' => 'hashed',
     ];
 
-    public static function inRandomOrder()
+    public function annonces(): HasMany
     {
+        return $this->hasMany(Annonce::class);
     }
+
 
     public function canAccessPanel(Panel $panel): bool
     {

@@ -2,36 +2,31 @@
 
 namespace App\Models;
 
-use App\Models\Image;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Application;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Annonce extends Model
 {
-    protected $table ='annonce';
     use HasFactory;
+
     protected $fillable = [
-
-        'user_id','titre','description','prix','categorie','statu'
-
+        'user_id', 'titre', 'description', 'prix', 'categorie', 'statu'
     ];
 
-
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, );
-    }
-    public function images()
-    {
-        return $this->belongsToMany(Image::class, 'annonce_images');
+        return $this->belongsTo(User::class);
     }
 
-
-    protected $with = ['images'];
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
 }
+
 
 

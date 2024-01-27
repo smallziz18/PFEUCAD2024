@@ -67,6 +67,9 @@
         }
     </style>
 
+
+
+
 </head>
 
 <body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
@@ -128,74 +131,63 @@
         </div>
     </div>
 </nav>
-<div class="carousel relative container mx-auto" style="max-width:1600px;">
-    <div class="carousel-inner relative overflow-hidden w-full">
-        <!--Slide 1-->
-        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-        <div class="carousel-item absolute opacity-0" style="height:50vh;">
-            <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
 
-                <div class="container mx-auto">
-                    <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                        <p class="text-black text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</p>
-                        <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
-                    </div>
-                </div>
 
-            </div>
+
+<div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+        <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-        <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-        <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-
-        <!--Slide 2-->
-        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item absolute opacity-0 bg-cover bg-right" style="height:50vh;">
-            <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80');">
-
-                <div class="container mx-auto">
-                    <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                        <p class="text-black text-2xl my-4">Real Bamboo Wall Clock</p>
-                        <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
-                    </div>
-                </div>
-
-            </div>
+        <!-- Item 2 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-        <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-        <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-
-        <!--Slide 3-->
-        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item absolute opacity-0" style="height:50vh;">
-            <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style="background-image: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
-
-                <div class="container mx-auto">
-                    <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                        <p class="text-black text-2xl my-4">Brown and blue hardbound book</p>
-                        <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">view product</a>
-                    </div>
-                </div>
-
-            </div>
+        <!-- Item 3 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
-        <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-        <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900  leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-
-        <!-- Add additional indicators for each slide-->
-        <ol class="carousel-indicators">
-            <li class="inline-block mr-3">
-                <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
-            </li>
-            <li class="inline-block mr-3">
-                <label for="carousel-2" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
-            </li>
-            <li class="inline-block mr-3">
-                <label for="carousel-3" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
-            </li>
-        </ol>
-
+        <!-- Item 4 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        <!-- Item 5 -->
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
     </div>
+    <!-- Slider indicators -->
+    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Next</span>
+        </span>
+    </button>
 </div>
+
+
+
+
 
 <!--
 
@@ -236,39 +228,36 @@ Alternatively if you want to just have a single hero
         </div>
 
         @foreach($annonces as $annonce)
-
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
                 <a href="{{ url('/annonce/' . $annonce->id) }}">
-
-                    @if ($annonce->url_image)
-                        <img class="hover:grow hover:shadow-lg" src="{{ $annonce->url_image }}" alt="pas d'image">
-
+                    @if ($annonce->images->isNotEmpty())
+                        <!-- Afficher la première image de l'annonce s'il y en a -->
+                        <img class="hover:grow hover:shadow-lg" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                     @else
                         <!-- Afficher un message si aucune image n'est associée à l'annonce -->
                         <p>Aucune image disponible</p>
                     @endif
+
                     <div class="pt-3 flex items-center justify-between">
-                        <p class="">{{ $annonce->titre }}  </p>
-                        <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-                        </svg>
+                        <p class="">{{ $annonce->titre }}</p>
+
                     </div>
 
                     <div class="pt-3 flex items-center justify-between">
-
                         <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
                         </svg>
-                        <p></p>
+                        <p>{{ $annonce->user->name }}</p>
                     </div>
+
+                    <p class="pt-1 text-gray-900">{{ $annonce->prix }} FCFA</p>
+
+                    <p>Publié Par : {{ $annonce->user->name }}</p>
+                    <p>{{ $annonce->created_at->format('d/m/Y') }}</p>
                 </a>
-                <p class="pt-1 text-gray-900">{{ $annonce->prix }}.fcfa</p>
-
-                <p>Publié Par : {{ $annonce->user->name }}</p>
-                <p>{{$annonce->created_at}}</p>
-
             </div>
         @endforeach
+
 
     </div>
 

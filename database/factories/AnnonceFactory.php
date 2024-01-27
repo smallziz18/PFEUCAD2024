@@ -2,39 +2,40 @@
 
 namespace Database\Factories;
 use App\Models\Annonce;
-
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
-/**
- * @extends Factory<Annonce>
- */
 class AnnonceFactory extends Factory
 {
     protected $model = Annonce::class;
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
-
+        // sort un utilisateur au hasard depuis la bd
+        $randomUserId = DB::table('users')->inRandomOrder()->first()->id;
         return [
-            'user_id' => User::all()->random()->id,
-            'titre' => fake()->realText(20),
-            'description' => fake()->paragraph,
-            'prix' => fake()->randomFloat(2, 10, 1000),
-            'categorie' => fake()->word,
-            'statu' => fake()->boolean,
-            'url_image' => Image::all()->random()->url_image,
-
-
+            'user_id' =>  $randomUserId,
+            'titre' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'prix' => $this->faker->randomFloat(2, 0, 1000),
+            'categorie' => $this->faker->word,
+            'statu' => $this->faker->boolean,
         ];
     }
-    public function run()
+
+    public function configure(): AnnonceFactory
     {
-        Annonce::factory(10)->create();
+        return $this->afterCreating(function (Annonce $annonce) {
+            // Crée plusieurs images associées à cette annonce
+            for ($i = 0; $i < random_int(1, 5); $i++) {
+                Image::factory()->create([
+                    'annonce_id' => $annonce->id,
+                ]);
+            }
+        });
     }
+
 }
+

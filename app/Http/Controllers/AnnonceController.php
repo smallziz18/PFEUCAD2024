@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use App\Models\Image;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,10 +21,10 @@ class AnnonceController extends Controller
             abort(404);
         }
 
-        $images = DB::table('annonce')
-            ->join('images', 'annonce.url_image', '=', 'images.url_image')
+        $images = DB::table('annonces')
+            ->join('images', 'annonces.id', '=', 'images.annonce_id')
             ->select('images.url_image AS image_url')
-            ->where('annonce.id', $id)
+            ->where('annonces.id', $id)
             ->get();
 
         return view('annonces.show', compact('annonce', 'images'));
@@ -52,7 +55,7 @@ class AnnonceController extends Controller
 
         return redirect()->route('userannonce');
     }
-    public function showAnnoncesWithImages()
+    public function showAnnoncesWithImages(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $annonces = Annonce::with('image')->get();
         return view('layouts.home', ['annonces' => $annonces]);

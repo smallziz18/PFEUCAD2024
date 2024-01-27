@@ -53,7 +53,7 @@ Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', function () {
-    $annonces = \App\Models\Annonce::with('images', 'user')->get();
+    $annonces = Annonce::with('images', 'user')->paginate(10);
     return view('welcome', compact('annonces'));
 })->name('welcome');
 
@@ -67,7 +67,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/userannonce', function () {
 
-    $userannonces = \App\Models\Annonce::with('images')->where('user_id', auth()->id())->get();
+    $userannonces = Annonce::with('images')->where('user_id', auth()->id())->get();
 
     return view('userannonce', compact('userannonces'));
 })->middleware(['auth', 'verified'])->name('userannonce');
