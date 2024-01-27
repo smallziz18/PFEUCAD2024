@@ -36,7 +36,7 @@ class Addannonce extends Component
             'user_id'=>Auth::id(),
             'description'=>$this->description,
             'categorie'=>$this->categorie,
-            'url_image'=>$this->titre
+
 
 
             // Ajoutez d'autres champs si nécessaire
