@@ -18,24 +18,37 @@
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700">Catégorie</label>
 
-                    <div class="flex items-center">
-                        <input wire:model="categorie" name="categorie" type="radio" id="1" value="1" class="mr-2">
-                        <label for="1">1</label>
-                    </div>
                 <div class="flex items-center">
-                    <input wire:model="categorie" name="categorie" type="radio" id="2" value="2" class="mr-2">
-                    <label for="2">2</label>
+                    <input wire:model="categorie" name="categorie" type="radio" id="appartement" value="appartement" class="mr-2">
+                    <label for="appartement">Appartement</label>
                 </div>
                 <div class="flex items-center">
-                    <input wire:model="categorie" name="categorie" type="radio" id="3" value="3" class="mr-2">
-                    <label for="3">3</label>
+                    <input wire:model="categorie" name="categorie" type="radio" id="voiture" value="voiture" class="mr-2">
+                    <label for="voiture">Voiture</label>
                 </div>
                 <div class="flex items-center">
-                    <input wire:model="categorie" name="categorie" type="radio" id="4" value="4" class="mr-2">
-                    <label for="4">4</label>
+                    <input wire:model="categorie" name="categorie" type="radio" id="meubles" value="meubles" class="mr-2">
+                    <label for="meubles">Meubles</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="électronique" value="électronique" class="mr-2">
+                    <label for="électronique">Électronique</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="vêtements" value="vêtements" class="mr-2">
+                    <label for="vêtements">Vêtements</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="accessoires" value="accessoires" class="mr-2">
+                    <label for="accessoires">Accessoires</label>
+                </div>
+                <div class="flex items-center">
+                    <input wire:model="categorie" name="categorie" type="radio" id="autre" value="autre" class="mr-2">
+                    <label for="autre">autre</label>
                 </div>
 
             </div>
+
 
 
 
