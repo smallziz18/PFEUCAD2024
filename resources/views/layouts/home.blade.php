@@ -111,8 +111,23 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
+                       <x-danger-button>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                        <a href="{{ url('/profile') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Mon profil</a>
+                            <a href="route('logout')"
+                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();" >
+                                {{ __('Se deconnecter') }}
+                            </a>
+                        </form>
+                        </x-danger-button>
+                        <x-primary-button>
+                        <a href="{{ route('addannonce') }}" >Ajouter Annonce</a>
+                        </x-primary-button>
+                        <x-primary-button>
+                        <a href="{{ url('/profile') }}" >Mon profil</a>
+                        </x-primary-button>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Se connecter</a>
 
