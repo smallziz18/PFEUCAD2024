@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Annonce;
 use App\Models\Image;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -23,7 +24,7 @@ class Addannonce extends Component
         return view('livewire.addannonce');
     }
 
-    public function ajouterProduit()
+    public function ajouterProduit(Request $request)
     {
         $this->validate([
             'titre' => 'required|string|max:255',
@@ -41,6 +42,11 @@ class Addannonce extends Component
             'categorie' => $this->categorie,
 
         ]);
+$file=$request->file('images');
+if ($file->move('images',$file->getClientOriginalName())){
+    echo"file";
+}
+
 
         // Réinitialiser les propriétés après la sauvegarde
         $this->reset('titre', 'description', 'prix', 'categorie');
