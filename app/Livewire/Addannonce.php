@@ -24,7 +24,7 @@ class Addannonce extends Component
         return view('livewire.addannonce');
     }
 
-    public function ajouterProduit(Request $request)
+    public function ajouterProduit()
     {
         $this->validate([
             'titre' => 'required|string|max:255',
@@ -42,10 +42,8 @@ class Addannonce extends Component
             'categorie' => $this->categorie,
 
         ]);
-$file=$request->file('images');
-if ($file->move('images',$file->getClientOriginalName())){
-    echo"file";
-}
+
+
 
 
         // Réinitialiser les propriétés après la sauvegarde
