@@ -53,7 +53,7 @@ Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', function () {
-    $annonces = Annonce::with('images', 'user')->paginate(15);
+    $annonces = Annonce::with('images', 'user')->paginate(70);
     return view('welcome', compact('annonces'));
 })->name('welcome');
 
