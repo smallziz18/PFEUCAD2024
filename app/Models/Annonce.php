@@ -23,6 +23,10 @@ class Annonce extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function favoris()
+    {
+        return $this->hasMany(Favoris::class);
+    }
 
     public function images(): HasMany
     {

@@ -67,14 +67,15 @@ Route::get('/annonceadded', function () {
 
 Route::get('/userannonce', function () {
 
-    $userannonces = Annonce::with('images')->where('user_id', auth()->id())->get();
+    $userannonces = Annonce::with('images')->where('user_id', auth()->id())->paginate(15);
 
     return view('userannonce', compact('userannonces'));
 })->middleware(['auth', 'verified'])->name('userannonce');
 
 Route::get('/userfavoris', function () {
-
-    return view('userfavoris');
+$annonces=\App\Models\Annonce::with('favoris','user','images')->where('user_id',auth()->id())->paginate(15);
+//$annonce=\App\Models\Favoris::with($annonce)->paginate(15);
+return view('userfavoris',compact('annonces'));
 
 })->middleware(['auth', 'verified'])->name('userfavoris');
 Route::get('/addannonce', function () {
