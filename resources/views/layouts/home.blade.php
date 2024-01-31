@@ -323,7 +323,7 @@ Alternatively if you want to just have a single hero
                         <img class="hover:grow hover:shadow-lg" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                     @else
                         <!-- Afficher un message si aucune image n'est associée à l'annonce -->
-                        <p>Aucune image disponible</p>
+                        <img src="Pas_d'image_disponible.svg.png">
                     @endif
 
                     <div class="pt-3 flex items-center justify-between">
