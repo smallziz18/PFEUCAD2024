@@ -73,9 +73,15 @@ Route::get('/userannonce', function () {
 })->middleware(['auth', 'verified'])->name('userannonce');
 
 Route::get('/userfavoris', function () {
-$annonces=\App\Models\Annonce::with('favoris','user','images')->where('user_id',auth()->id())->paginate(15);
-//$annonce=\App\Models\Favoris::with($annonce)->paginate(15);
-return view('userfavoris',compact('annonces'));
+$favoris=\App\Models\Favoris::where('user_id', auth()->id())
+        ->with('annonce.images')->paginate(15);
+    foreach ($favoris as $favorite) {
+        $annonce = optional($favorite->annonce);
+        $images = optional($annonce->images);
+    }
+
+
+    return view('userfavoris',compact('favoris'));
 
 })->middleware(['auth', 'verified'])->name('userfavoris');
 Route::get('/addannonce', function () {
