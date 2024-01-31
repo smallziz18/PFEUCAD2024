@@ -14,6 +14,13 @@
                         <div id="annonce-{{ $annonce->id }}">
                             <h2 class="text-xl font-semibold text-gray-800 dark:text-white">{{ $annonce->titre }}</h2>
                             <p class="text-gray-600 dark:text-gray-300">Prix :{{ $annonce->prix }} FCFA</p>
+                            @if ($annonce->images->isNotEmpty())
+                                <!-- Afficher la première image de l'annonce s'il y en a -->
+                                <img class="hover:grow hover:shadow-lg w-96" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                            @else
+                                <!-- Afficher un message si aucune image n'est associée à l'annonce -->
+                                <img src="Pas_d'image_disponible.svg.png" class="hover:grow hover:shadow-lg w-96">
+                            @endif
 
 
 
