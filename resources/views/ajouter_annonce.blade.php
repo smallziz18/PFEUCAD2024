@@ -1,26 +1,29 @@
-
-
-<div class="w-screen h-screen flex items-center justify-center">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Ajouter Annonce') }}
+        </h2>
+    </x-slot>
     <div class="form-container">
         <div class="form-header">
             <h2>Ajouter un Produit</h2>
         </div>
-        <form wire:submit.prevent="ajouterProduit" enctype="multipart/form-data">
+        <form method="post"  enctype="multipart/form-data">
+            @csrf
+
             <div class="form-group">
                 <label for="nom" class="form-label">Nom du produit</label>
-                <input wire:model="titre" type="text" id="nom" name="titre" class="form-control">
-                @error('titre') <span class="form-error">{{ $message }}</span> @enderror
+                <input type="text" id="nom" name="nom" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="description" class="form-label">Description</label>
-                <textarea wire:model="description" id="description" name="description" class="form-control"></textarea>
-                @error('description') <span class="form-error">{{ $message }}</span> @enderror
+                <textarea id="description" name="description" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="categorie" class="block text-sm font-medium text-gray-700">Catégorie</label>
-                <select wire:model="categorie" id="categorie" name="categorie" class="mt-1 p-2 border rounded-md w-full">
+                <select id="categorie" name="categorie" class="mt-1 p-2 border rounded-md w-full">
                     <optgroup label="Immobilier">
                         <option value="appartement">Appartements</option>
                         <option value="maison">Maisons</option>
@@ -93,22 +96,20 @@
                         <option value="autres">Autres</option>
                     </optgroup>
                 </select>
-                @error('categorie') <span class="form-error">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
                 <label for="prix" class="form-label">Prix</label>
-                <input wire:model="prix" type="text" id="prix" name="prix" class="form-control">
-                @error('prix') <span class="form-error">{{ $message }}</span> @enderror
+                <input type="text" id="prix" name="prix" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="photos" class="form-label">Photos</label>
-                <input wire:model="images" type="file" accept="image/png, image/jpeg" id="photos" name="photos[]" class="form-control" multiple>
-                @error('images.*') <span class="form-error">{{ $message }}</span> @enderror
+                <input type="file" accept="image/png, image/jpeg" id="photos" name="images[]" class="form-control" multiple>
             </div>
 
             <button type="submit" class="form-submit">Ajouter Produit</button>
         </form>
     </div>
-</div>
+
+</x-app-layout>

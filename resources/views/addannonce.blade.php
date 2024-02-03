@@ -1,3 +1,71 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        max-width: 500px;
+        margin: 50px auto; /* Centrer le formulaire */
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #66afe9;
+    }
+
+    .form-error {
+        color: #ff0000;
+        font-size: 14px;
+    }
+
+    .form-submit {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .form-submit:hover {
+        background-color: #0056b3;
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -8,17 +76,24 @@
         <div class="form-header">
             <h2>Ajouter un Produit</h2>
         </div>
-        <form method="POST" action="{{ route('addannonce') }}" enctype="multipart/form-data">
+
+        <form method="POST" action="{{ url('/ajouter_annnoce') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
                 <label for="nom" class="form-label">Nom du produit</label>
-                <input type="text" id="nom" name="nom" class="form-control">
+                <input type="text" id="nom" name="titre" class="form-control">
+                @error('titre')
+                <p class="form-error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label for="description" class="form-label">Description</label>
                 <textarea id="description" name="description" class="form-control"></textarea>
+                @error('description')
+                <p class="form-error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -100,12 +175,15 @@
 
             <div class="form-group">
                 <label for="prix" class="form-label">Prix</label>
-                <input type="text" id="prix" name="prix" class="form-control">
+                <input type="number" id="prix" name="prix" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="photos" class="form-label">Photos</label>
-                <input type="file" accept="image/png, image/jpeg" id="photos" name="url_image[]" class="form-control" multiple>
+                <input type="file" accept="image/png, image/jpeg" id="photos" name="images[]" class="form-control" multiple>
+                @error('photos')
+                <p class="form-error">{{ $message }}</p>
+                @enderror
             </div>
 
             <button type="submit" class="form-submit">Ajouter Produit</button>

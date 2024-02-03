@@ -53,7 +53,7 @@ Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', function () {
-    $annonces = Annonce::with('images', 'user')->paginate(70);
+    $annonces = Annonce::with('images', 'user')->paginate(100);
     return view('welcome', compact('annonces'));
 })->name('welcome');
 
@@ -79,7 +79,9 @@ $favoris=\App\Models\Favoris::where('user_id', auth()->id())
 
 })->middleware(['auth', 'verified'])->name('userfavoris');
 
-Route::post('/addannonce', [AnnonceController::class, 'ajouterProduit'])->middleware(['auth', 'verified'])->name('addannonce');
+Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
+
+Route::post('/ajouter_annnoce', [AnnonceController::class, 'ajouterProduit']);
 
 
 

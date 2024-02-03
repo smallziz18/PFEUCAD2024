@@ -18,6 +18,51 @@ class AnnonceController extends Controller
 {
 
 
+    public function ajouterProduit(Request $request): RedirectResponse
+
+    {
+
+
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'categorie' => 'required|string',
+            'prix' => 'required|numeric',
+            'images.*' => 'image|mimes:jpeg,png|max:2048', // Les images doivent être de type jpeg ou png et ne pas dépasser 2 Mo
+        ]);
+
+        // Création de l'annonce
+        $annonce = Annonce::create([
+            'user_id' => Auth::id(),
+            'titre' => $request->titre,
+            'prix' => $request->prix,
+            'description' => $request->description,
+            'categorie' => $request->categorie,
+        ]);
+
+        // Traitement des images téléchargées
+        foreach ($request->file('images') as $image) {
+            // Génération d'un nom de fichier unique
+            $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
+
+            // Téléchargement de l'image et stockage dans le système de fichiers avec le nom généré
+            $path = $image->storeAs('images', $imageName);
+
+            // Création de l'enregistrement de l'image associée à l'annonce
+            Image::create([
+                'annonce_id' => $annonce->id, // Associer l'image à l'annonce créée
+                'url_image' => $path, // Stocker le chemin de l'image dans la base de données
+            ]);
+        }
+
+        // Message de succès
+        session()->flash('message', 'Annonce ajoutée avec succès.');
+
+        // Redirection vers une autre page ou affichage d'un message de succès
+        return redirect()->to('annonceadded');
+    }
+
+
     public function show($id)
     {
         $annonce = Annonce::where('id', $id)->first();
@@ -65,46 +110,11 @@ class AnnonceController extends Controller
         return redirect()->route('userannonce')->with('id','');
     }
 
-    public function ajouterProduit(Request $request): RedirectResponse
+
+
+    public  function form()
     {
-        // Validation des champs du formulaire, y compris les images
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'required|string',
-            'categorie' => 'required|string',
-            'prix' => 'required|numeric',
-            'images.*' => 'image|mimes:jpeg,png|max:2048', // Les images doivent être de type jpeg ou png et ne pas dépasser 2 Mo
-        ]);
-
-        // Création de l'annonce
-        $annonce = Annonce::create([
-            'user_id' => Auth::id(),
-            'titre' => $request->titre,
-            'prix' => $request->prix,
-            'description' => $request->description,
-            'categorie' => $request->categorie,
-        ]);
-
-        // Traitement des images téléchargées
-        foreach ($request->file('images') as $image) {
-            // Génération d'un nom de fichier unique
-            $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
-
-            // Téléchargement de l'image et stockage dans le système de fichiers avec le nom généré
-            $path = $image->storeAs('images', $imageName);
-
-            // Création de l'enregistrement de l'image associée à l'annonce
-            Image::create([
-                'annonce_id' => $annonce->id, // Associer l'image à l'annonce créée
-                'url_image' => $path, // Stocker le chemin de l'image dans la base de données
-            ]);
-        }
-
-        // Message de succès
-        session()->flash('message', 'Annonce ajoutée avec succès.');
-
-        // Redirection vers une autre page ou affichage d'un message de succès
-        return redirect()->to('annonceadded');
+        return \view('addannonce');
     }
 }
 
