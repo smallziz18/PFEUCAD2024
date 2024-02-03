@@ -317,7 +317,7 @@ Alternatively if you want to just have a single hero
 
         @foreach($annonces as $annonce)
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                <a href="{{ url( $annonce->id) }}">
+                <a href="{{ url("annonce=". $annonce->id) }}">
                     @if ($annonce->images->isNotEmpty())
                         <!-- Afficher la première image de l'annonce s'il y en a -->
                         <img class="hover:grow hover:shadow-lg" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">

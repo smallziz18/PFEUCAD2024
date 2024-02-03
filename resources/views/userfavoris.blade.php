@@ -8,7 +8,7 @@
         <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
     @foreach($favoris as $favoris)
         <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="{{ url( $favoris->annonce->id) }}">
+            <a href="{{ url("annonce=". $favoris->annonce->id) }}">
                 @if ($favoris->annonce->images->isNotEmpty())
                     <!-- Afficher la première image de l'annonce s'il y en a -->
                     <img class="hover:grow hover:shadow-lg" src="{{ $favoris->annonce->images->first()->url_image }}" alt="Image de l'annonce">
