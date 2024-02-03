@@ -67,7 +67,7 @@ Route::get('/annonceadded', function () {
 
 Route::get('/userannonce', function () {
 
-    $userannonces = Annonce::with('images')->where('user_id', auth()->id())->paginate(15);
+    $userannonces = Annonce::with('images')->where('user_id', auth()->id())->paginate(30);
 
     return view('userannonce', compact('userannonces'));
 })->middleware(['auth', 'verified'])->name('userannonce');
