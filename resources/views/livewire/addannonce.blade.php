@@ -64,11 +64,11 @@
         <div class="form-header">
             <h2>Ajouter un Produit</h2>
         </div>
-        <form wire:submit.prevent="ajouterProduit">
+        <form wire:submit.prevent="ajouterProduit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nom" class="form-label">Nom du produit</label>
                 <input wire:model="titre" type="text" id="nom" name="titre" class="form-control">
-                @error('nom') <span class="form-error">{{ $message }}</span> @enderror
+                @error('titre') <span class="form-error">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">
@@ -163,8 +163,8 @@
 
             <div class="form-group">
                 <label for="photos" class="form-label">Photos</label>
-                <input wire:model="images" type="file" accept="image/png, image/jpeg" id="photos" name="photos" class="form-control">
-                @error('photos') <span class="form-error">{{ $message }}</span> @enderror
+                <input wire:model="images" type="file" accept="image/png, image/jpeg" id="photos" name="photos[]" class="form-control" multiple>
+                @error('images.*') <span class="form-error">{{ $message }}</span> @enderror
             </div>
 
             <button type="submit" class="form-submit">Ajouter Produit</button>

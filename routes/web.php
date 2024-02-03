@@ -78,11 +78,10 @@ $favoris=\App\Models\Favoris::where('user_id', auth()->id())
     return view('userfavoris',compact('favoris'));
 
 })->middleware(['auth', 'verified'])->name('userfavoris');
-Route::get('/addannonce', function () {
 
-    return view('addannonce');
+Route::post('/addannonce', [AnnonceController::class, 'ajouterProduit'])->middleware(['auth', 'verified'])->name('addannonce');
 
-})->middleware(['auth', 'verified'])->name('addannonce');
+
 
 
 
