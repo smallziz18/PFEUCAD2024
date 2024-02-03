@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -77,8 +78,9 @@ class AnnonceController extends Controller
             ->select('images.url_image AS image_url')
             ->where('annonces.id', $id)
             ->get();
+        $user= User::where('id',$annonce->user_id)->first();
 
-        return view('show', compact('annonce', 'images'));
+        return view('show', compact('annonce', 'images','user'));
     }
 
     public function showAnnoncesWithImages(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
