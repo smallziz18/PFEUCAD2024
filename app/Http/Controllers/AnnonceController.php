@@ -46,7 +46,7 @@ class AnnonceController extends Controller
             $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
 
             // Téléchargement de l'image et stockage dans le dossier public avec le nom généré
-            $path = $image->storeAs('public/images', $imageName);
+            $path = $image->storeAs('storage/images', $imageName);
 
             // Création de l'enregistrement de l'image associée à l'annonce
             Image::create([
@@ -78,7 +78,7 @@ class AnnonceController extends Controller
             ->where('annonces.id', $id)
             ->get();
 
-        return view('annonces.show', compact('annonce', 'images'));
+        return view('show', compact('annonce', 'images'));
     }
 
     public function showAnnoncesWithImages(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
