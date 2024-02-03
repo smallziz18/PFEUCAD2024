@@ -45,15 +45,16 @@ class AnnonceController extends Controller
             // Génération d'un nom de fichier unique
             $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
 
-            // Téléchargement de l'image et stockage dans le système de fichiers avec le nom généré
-            $path = $image->storeAs('images', $imageName);
+            // Téléchargement de l'image et stockage dans le dossier public avec le nom généré
+            $path = $image->storeAs('public/images', $imageName);
 
             // Création de l'enregistrement de l'image associée à l'annonce
             Image::create([
                 'annonce_id' => $annonce->id, // Associer l'image à l'annonce créée
-                'url_image' => $path, // Stocker le chemin de l'image dans la base de données
+                'url_image' => 'storage/images/' . $imageName, // Stocker le chemin de l'image dans la base de données
             ]);
         }
+
 
         // Message de succès
         session()->flash('message', 'Annonce ajoutée avec succès.');
