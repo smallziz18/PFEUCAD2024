@@ -49,7 +49,7 @@ Route::post('/email/verification-notification',function (\Illuminate\Http\Reques
 
 })->middleware(['auth','throttle:6.1'])->name('verification.send');
 
-Route::get('/annonce/{id}', [AnnonceController::class, 'show']);
+Route::get('/{id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', function () {
