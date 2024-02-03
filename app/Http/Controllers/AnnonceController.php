@@ -41,7 +41,7 @@ class AnnonceController extends Controller
         ]);
 
         // Traitement des images téléchargées
-        foreach ($request->file('../public/app/strorage/images') as $image) {
+        foreach ($request->file('images') as $image) {
             // Génération d'un nom de fichier unique
             $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
 
