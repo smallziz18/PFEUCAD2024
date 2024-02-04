@@ -157,7 +157,7 @@
             <div class="{{ $key == 0 ? 'block' : 'hidden' }} duration-700 ease-in-out" data-carousel-item>
                 @if ($annonce->images->isNotEmpty())
                     <!-- Afficher la première image de l'annonce s'il y en a -->
-                    <a href="{{ url('/annonce/' . $annonce->id) }}">
+                    <a href="{{ url('/annonce=' . $annonce->id) }}">
                         <img src="{{ $annonce->images->first()->url_image }}" class="absolute block w-full h-full object-cover" alt="Image de l'annonce">
                     </a>
                 @else

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Annonce;
+use App\Models\Favoris;
+use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +48,15 @@ class ProfileController extends Controller
             'password' => ['required', 'current_password'],
         ]);
 
+
         $user = $request->user();
+        Favoris::where('user_id', $user->id)->delete();
+        $annonces=Annonce::where('user_id',$user->id)->get();
+        foreach ($annonces as $annonce){
+            $image=Image::where('annonce_id',$annonce->id)->delete();
+            $annonce->delete();
+        }
+
 
         Auth::logout();
 

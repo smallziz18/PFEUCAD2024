@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Annonce;
 use App\Models\Image;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +54,7 @@ Route::post('/email/verification-notification',function (\Illuminate\Http\Reques
 Route::get('/annonce={id}', [AnnonceController::class, 'show']);
 
 
-Route::get('/', function () {
-    $annonces = Annonce::with('images', 'user')->paginate(100);
-    return view('welcome', compact('annonces'));
-})->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 
 
@@ -73,12 +71,9 @@ Route::get('/userannonce', function () {
     return view('userannonce', compact('userannonces'));
 })->middleware(['auth', 'verified'])->name('userannonce');
 
-Route::get('/userfavoris', function () {
-$favoris=\App\Models\Favoris::where('user_id', auth()->id())
-        ->with('annonce.images')->paginate(15);
-    return view('userfavoris',compact('favoris'));
-
-})->middleware(['auth', 'verified'])->name('userfavoris');
+Route::get('/userfavoris', [FavorisController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('userfavoris');
 
 Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
 
