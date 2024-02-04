@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\Favoris;
 use App\Models\Image;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -114,7 +115,24 @@ class AnnonceController extends Controller
         return redirect()->route('userannonce')->with('id','');
     }
 
+    public function delete(Request $request){
+        $id = $request->input('id');
+        $annonce = Annonce::findOrFail($id);
+        $images = Image::where('annonce_id', $id)->get();
 
+        foreach ($images as $image) {
+            if ($image->image_url){
+            Storage::delete($image->image_url);
+            }
+            $image->delete();
+        }
+
+        Favoris::where('annonce_id', $id)->where('user_id',Auth::id())->delete();
+
+        $annonce->delete();
+        return redirect()->route('userannonce');
+
+    }
 
     public  function form()
     {
