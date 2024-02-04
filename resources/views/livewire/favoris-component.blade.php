@@ -23,7 +23,7 @@
                     <!-- Utilisation d'un formulaire Livewire pour gérer l'ajout/suppression des favoris -->
                     <form wire:submit.prevent="toggleFavori({{ $annonce->id }})">
                         @csrf
-                        @if ($annonce->isFavoritedByUser(Auth::user()))
+                        @if ($annonce->isFavoritedByUser(Auth::id()))
                             <!-- Afficher le SVG du cœur plein si l'annonce est un favori -->
                             <button type="submit">
                                 <svg class="toggle-svg h-6 w-6 fill-current text-red-500 hover:text-black">
