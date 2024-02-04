@@ -2,7 +2,8 @@
     <div class="flex flex-wrap">
         @foreach($annonces as $key => $annonce)
             @if($key % 5 == 0 && $key != 0)
-    </div><div class="flex flex-wrap">
+    </div>
+    <div class="flex flex-wrap">
         @endif
 
         <div class="w-full md:w-1/5 p-6 flex flex-col">
