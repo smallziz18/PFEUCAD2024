@@ -3,6 +3,7 @@
         @foreach($annonces as $key => $annonce)
             @if($key % 5 == 0 && $key != 0)
     </div>
+
     <div class="flex flex-wrap">
         @endif
 
@@ -56,5 +57,11 @@
             <p>{{ $annonce->created_at->format('d/m/Y') }}</p>
         </div>
         @endforeach
+        @if(session('message'))
+            <div class="alert {{ session('alert-class') }}">
+                {{ session('message') }}
+            </div>
+        @endif
+
     </div>
 </div>

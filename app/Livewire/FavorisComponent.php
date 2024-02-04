@@ -25,8 +25,9 @@ class FavorisComponent extends Component
                 ->delete();
 
 
-
             session()->flash('message', 'Annonce retirée des favoris avec succès.');
+            session()->flash('alert-class', 'alert-success');
+
         } else {
             Favoris::create([
                 'user_id' => Auth::id(),
@@ -36,6 +37,7 @@ class FavorisComponent extends Component
 
 
             session()->flash('message', 'Annonce ajoutée aux favoris avec succès.');
+            session()->flash('alert-class', 'alert-success');
         }
     }
 
