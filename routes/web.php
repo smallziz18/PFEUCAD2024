@@ -10,6 +10,7 @@ use App\Models\Annonce;
 use App\Models\Image;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\FavorisController;
 
 /*
 |--------------------------------------------------------------------------
