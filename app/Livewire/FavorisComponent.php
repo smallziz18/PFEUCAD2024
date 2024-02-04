@@ -12,8 +12,9 @@ class FavorisComponent extends Component
 
 
 {
-    public function toggleFavori(int $annonceId): void
+    public function toggleFavori($annonceId): void
     {
+
         $favorisExist = Favoris::where('user_id', Auth::id())
             ->where('annonce_id', $annonceId)
             ->exists();
@@ -23,7 +24,7 @@ class FavorisComponent extends Component
                 ->where('annonce_id', $annonceId)
                 ->delete();
 
-            $this->emit('favorisUpdated');
+
 
             session()->flash('message', 'Annonce retirée des favoris avec succès.');
         } else {
@@ -32,7 +33,7 @@ class FavorisComponent extends Component
                 'annonce_id' => $annonceId,
             ]);
 
-            $this->emit('favorisUpdated');
+
 
             session()->flash('message', 'Annonce ajoutée aux favoris avec succès.');
         }
