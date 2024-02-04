@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\FavorisComponent;
 use App\Models\User;
 use http\Client\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -82,7 +83,14 @@ $favoris=\App\Models\Favoris::where('user_id', auth()->id())
 Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
 
 Route::post('/ajouter_annnoce', [AnnonceController::class, 'ajouterProduit']);
+Route::get('/images/{filename}', [AnnonceController::class, 'showImg'])->name('image.show');
 
+
+
+
+Route::post('/addFavoris', [FavorisComponent::class,'toggleFavori'])
+    ->middleware(['auth', 'verified'])
+    ->name('addfavoris');
 
 
 

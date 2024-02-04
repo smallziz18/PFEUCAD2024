@@ -23,7 +23,7 @@ class Annonce extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function favoris()
+    public function favoris(): HasMany
     {
         return $this->hasMany(Favoris::class);
     }
@@ -32,6 +32,12 @@ class Annonce extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function isFavoritedByUser($userId): bool
+    {
+        return $this->favoris()->where('user_id', $userId)->exists();
+    }
+
+
 }
 
 

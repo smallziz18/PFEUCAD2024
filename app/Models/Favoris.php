@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Favoris extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+
+    ];
     public function annonce()
     {
         return $this->belongsTo(Annonce::class, 'annonce_id');

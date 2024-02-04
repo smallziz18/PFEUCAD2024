@@ -270,6 +270,41 @@
     });
 </script>
 
+<script>
+    document.querySelectorAll('.favoris-toggle').forEach(item => {
+        item.addEventListener('click', event => {
+            const annonceId = item.dataset.id;
+            const isAdded = item.dataset.added === 'true';
+
+            // Envoyer la requête AJAX
+            axios.post('/addFavoris', {
+                annonce_id: annonceId
+            })
+                .then(function (response) {
+                    // Mettre à jour l'état du bouton SVG et le message
+                    if (isAdded) {
+                        item.dataset.added = 'false';
+                        item.querySelector('.toggle-svg').classList.remove('text-red-500');
+                        item.querySelector('.toggle-svg').classList.add('text-gray-500');
+                        console.log(response.data.message); // Afficher le message de succès ou d'échec
+                    } else {
+                        item.dataset.added = 'true';
+                        item.querySelector('.toggle-svg').classList.remove('text-gray-500');
+                        item.querySelector('.toggle-svg').classList.add('text-red-500');
+                        console.log(response.data.message); // Afficher le message de succès ou d'échec
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            // Empêcher le comportement par défaut du lien
+            event.preventDefault();
+        });
+    });
+</script>
+
+
 
 
 
@@ -298,76 +333,16 @@ Alternatively if you want to just have a single hero
 -->
 
 <section class="bg-white py-8">
-
     <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="#">
-                <img class="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80" alt="">
-                <div class="pt-3 flex items-center justify-between">
-                    <p class="">Product Name</p>
-                    <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-                    </svg>
-                </div>
-                <p class="pt-1 text-gray-900">£9.99</p>
-            </a>
-        </div>
-
-        @foreach($annonces as $annonce)
-            <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                <a href="{{ url("annonce=". $annonce->id) }}">
-                    @if ($annonce->images->isNotEmpty())
-                        <!-- Afficher la première image de l'annonce s'il y en a -->
-                        <img class="hover:grow hover:shadow-lg" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
-                    @else
-                        <!-- Afficher un message si aucune image n'est associée à l'annonce -->
-                        <img src="Pas_d'image_disponible.svg.png">
-                    @endif
-
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="">{{ $annonce->titre }}</p>
-
-                    </div>
-
-                    <div class="pt-3 flex items-center justify-between">
-                        <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-                        </svg>
-                        <p>{{ $annonce->user->name }}</p>
-                    </div>
-
-                    <p class="pt-1 text-gray-900">{{ $annonce->prix }} FCFA</p>
-
-                    <p>Publié Par : {{ $annonce->user->name }}</p>
-                    <p>{{ $annonce->created_at->format('d/m/Y') }}</p>
-                </a>
-            </div>
-        @endforeach
+        @livewire('favoris-component')
 
 
     </div>
-
 </section>
 
-<section class="bg-white py-8">
 
-    <div class="container py-8 px-6 mx-auto">
 
-        <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8" href="#">
-            About
-        </a>
-
-        <p class="mt-8 mb-8">This template is inspired by the stunning nordic minimalist design - in particular:
-            <br>
-            <a class="text-gray-800 underline hover:text-gray-900" href="http://savoy.nordicmade.com/" target="_blank">Savoy Theme</a> created by <a class="text-gray-800 underline hover:text-gray-900" href="https://nordicmade.com/">https://nordicmade.com/</a> and <a class="text-gray-800 underline hover:text-gray-900" href="https://www.metricdesign.no/" target="_blank">https://www.metricdesign.no/</a></p>
-
-        <p class="mb-8">Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Vitae aliquet nec ullamcorper sit. Nullam eget felis eget nunc lobortis mattis aliquam. In est ante in nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula ipsum a arcu. Nec nam aliquam sem et tortor consequat. Eget mi proin sed libero enim sed faucibus turpis in. Hac habitasse platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum quisque non tellus orci ac auctor augue mauris. Accumsan lacus vel facilisis volutpat est velit egestas dui id. At tempor commodo ullamcorper a. Volutpat commodo sed egestas egestas fringilla. Vitae congue eu consequat ac.</p>
-
-    </div>
-
-</section>
 
 <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
     <div class="container flex px-3 py-8 ">

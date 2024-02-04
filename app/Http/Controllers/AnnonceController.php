@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
 class AnnonceController extends Controller
@@ -119,5 +120,6 @@ class AnnonceController extends Controller
     {
         return \view('addannonce');
     }
+
 }
 
