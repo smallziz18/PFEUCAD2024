@@ -99,17 +99,11 @@ class AnnonceController extends Controller
             'prix' => 'required|numeric',
             'categorie' => 'required|string',
         ]);
-
-
         $annonce = Annonce::findOrFail($id);
-
-
         $annonce->titre = $request->input('titre');
         $annonce->description = $request->input('description');
         $annonce->prix= $request->input('prix');
         $annonce->categorie=$request->input('categorie');
-
-
         $annonce->save();
 
         return redirect()->route('userannonce')->with('id','');
@@ -127,12 +121,13 @@ class AnnonceController extends Controller
             $image->delete();
         }
 
-        Favoris::where('annonce_id', $id)->where('user_id',Auth::id())->delete();
+        Favoris::where('annonce_id', $id)->delete();
 
         $annonce->delete();
         return redirect()->route('userannonce');
 
     }
+
 
     public  function form()
     {
