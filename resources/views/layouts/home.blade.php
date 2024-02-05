@@ -188,11 +188,7 @@
     </button>
 
     <!-- bouton apres -->
-    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-        @foreach($annonces as $key => $annonce)
-            <button type="button" class="w-3 h-3 rounded-full {{ $key == 0 ? 'bg-white' : 'bg-gray-300' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}" data-carousel-slide-to="{{ $key }}"></button>
-        @endforeach
-    </div>
+
 </div>
 
 <script>
@@ -233,18 +229,7 @@
             showSlide(currentIndex);
         }
 
-        // Function to update indicators
-        function updateIndicators() {
-            indicators.forEach((indicator, i) => {
-                if (i === currentIndex) {
-                    indicator.classList.add('bg-white');
-                    indicator.classList.remove('bg-gray-300');
-                } else {
-                    indicator.classList.remove('bg-white');
-                    indicator.classList.add('bg-gray-300');
-                }
-            });
-        }
+
 
         // Event listeners for prev and next buttons
         prevButton.addEventListener('click', showPrevSlide);
@@ -270,39 +255,7 @@
     });
 </script>
 
-<script>
-    document.querySelectorAll('.favoris-toggle').forEach(item => {
-        item.addEventListener('click', event => {
-            const annonceId = item.dataset.id;
-            const isAdded = item.dataset.added === 'true';
 
-            // Envoyer la requête AJAX
-            axios.post('/addFavoris', {
-                annonce_id: annonceId
-            })
-                .then(function (response) {
-                    // Mettre à jour l'état du bouton SVG et le message
-                    if (isAdded) {
-                        item.dataset.added = 'false';
-                        item.querySelector('.toggle-svg').classList.remove('text-red-500');
-                        item.querySelector('.toggle-svg').classList.add('text-gray-500');
-                        console.log(response.data.message); // Afficher le message de succès ou d'échec
-                    } else {
-                        item.dataset.added = 'true';
-                        item.querySelector('.toggle-svg').classList.remove('text-gray-500');
-                        item.querySelector('.toggle-svg').classList.add('text-red-500');
-                        console.log(response.data.message); // Afficher le message de succès ou d'échec
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-
-            // Empêcher le comportement par défaut du lien
-            event.preventDefault();
-        });
-    });
-</script>
 
 
 
