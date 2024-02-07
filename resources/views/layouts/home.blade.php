@@ -285,6 +285,7 @@ Alternatively if you want to just have a single hero
 
 -->
 
+
 <section class="bg-white py-8">
     <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 

@@ -106,6 +106,7 @@ class AnnonceController extends Controller
         $annonce->categorie=$request->input('categorie');
         $annonce->save();
 
+
         return redirect()->route('userannonce')->with('id','');
     }
 
