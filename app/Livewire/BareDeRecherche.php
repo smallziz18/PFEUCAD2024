@@ -17,7 +17,8 @@ class BareDeRecherche extends Component
             $words = '%' . $this->query . '%';
             $this->annonces = Annonce::where(function ($query) use ($words) {
                 $query->where("titre", 'like', $words)
-                    ->orWhere("description", 'like', $words);
+                    ->orWhere("description", 'like', $words)
+                    ->orWhere("categorie",'like',$words);
             })->get();
 
         }
