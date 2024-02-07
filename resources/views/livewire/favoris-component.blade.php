@@ -10,7 +10,7 @@
         <div class="w-full md:w-1/5 p-6 flex flex-col">
             <a href="{{ url("annonce=". $annonce->id) }}">
                 @if ($annonce->images->isNotEmpty())
-                    <img class="hover:grow hover:shadow-lg " style="height: 200px" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                    <img class="hover:grow hover:shadow-lg " style="height: 300px ; width: 300px" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                 @else
 
                     <img src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
