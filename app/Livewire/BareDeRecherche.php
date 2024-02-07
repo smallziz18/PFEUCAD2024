@@ -12,12 +12,13 @@ class BareDeRecherche extends Component
 
     public function updatedQuery()
     {
-        if (strlen($this->query) > 2)
+        if (strlen($this->query) > 1)
         {
             $words = '%' . $this->query . '%';
             $this->annonces = Annonce::where(function ($query) use ($words) {
                 $query->where("titre", 'like', $words)
-                    ->orWhere("description", 'like', $words);
+                    ->orWhere("description", 'like', $words)->orWhere("categorie",'like',$words);
+
             })->get();
 
         }

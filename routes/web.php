@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RechercheController;
 use App\Livewire\FavorisComponent;
 use App\Models\User;
 use http\Client\Request;
@@ -57,7 +58,7 @@ Route::get('/annonce={id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::post('/', [\App\Http\Controllers\RechercheController::class, 'show'])->name('tri');
+Route::post('/', [RechercheController::class, 'show'])->name('tri');
 
 
 
