@@ -10,21 +10,18 @@
         <div class="w-full md:w-1/5 p-6 flex flex-col">
             <a href="{{ url("annonce=". $annonce->id) }}">
                 @if ($annonce->images->isNotEmpty())
-                    <!-- Afficher la première image de l'annonce s'il y en a -->
-                    <img class="hover:grow hover:shadow-lg h-0" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                    <img class="hover:grow hover:shadow-lg " style="height: 200px" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                 @else
-                    <!-- Afficher un message si aucune image n'est associée à l'annonce -->
+
                     <img src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
                 @endif
             </a>
 
             <div class="pt-3 flex items-center justify-between favoris-toggle">
                 <div>
-                    <!-- Utilisation d'un formulaire Livewire pour gérer l'ajout/suppression des favoris -->
                     <form wire:submit.prevent="toggleFavori({{ $annonce->id }})">
                         @csrf
                         @if ($annonce->isFavoritedByUser(Auth::id()))
-                            <!-- Afficher le SVG du cœur plein si l'annonce est un favori -->
                             <button type="submit">
                                 <svg class="toggle-svg h-6 w-6 fill-current text-red-500 hover:text-black">
                                     <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,
@@ -35,7 +32,6 @@
                                 </svg>
                             </button>
                         @else
-                            <!-- Afficher le SVG du cœur vide si l'annonce n'est pas un favori -->
                             <button type="submit">
                                 <svg class="toggle-svg h-6 w-6 fill-current text-gray-500 hover:text-black">
                                     <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,

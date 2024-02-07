@@ -161,7 +161,7 @@
                 @foreach($images as $image)
                     <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
 
-                        <img class="hover:grow hover:shadow-lg mb-4" src="{{ $image->image_url }}" alt="Image de l'annonce">
+                        <img class="hover:grow hover:shadow-lg mb-4" style="height: 200px" src="{{ $image->image_url }}" alt="Image de l'annonce">
 
                     </div>
                 @endforeach
