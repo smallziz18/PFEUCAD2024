@@ -12,13 +12,13 @@
         </svg>
     </div>
 
-       <div class="absolute border bg-gray-200 text-md w-56 mt-1">
-           @if(strlen($query)>2)
+       <div class="absolute border bg-gray-200 text-md w-56 mt-1 max-h-96 overflow-auto">
+           @if(strlen($query)>1)
                <div>
                    @if(count($annonces)>0)
                        @foreach($annonces as $annonce)
                            <a href="{{ url("annonce=". $annonce->id) }}">
-                               <p class="p-1">{{$annonce->titre}}</p>
+                               <p class="p-1 ">{{$annonce->titre}}</p>
                            </a>
 
                        @endforeach
