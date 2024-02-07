@@ -19,7 +19,7 @@ class AnnonceFactory extends Factory
             'user_id' =>  $randomUserId,
             'titre' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'prix' => $this->faker->randomFloat(2, 0, 1000),
+            'prix' => $this->faker->randomFloat(0, 0, 1000),
             'categorie' => $this->faker->word,
             'statu' => $this->faker->boolean,
         ];

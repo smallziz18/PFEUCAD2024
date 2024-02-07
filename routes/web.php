@@ -56,6 +56,8 @@ Route::get('/annonce={id}', [AnnonceController::class, 'show']);
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::post('/', [\App\Http\Controllers\RechercheController::class, 'show'])->name('tri');
+
 
 
 
