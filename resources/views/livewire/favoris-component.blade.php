@@ -8,16 +8,17 @@
         @endif
 
         <div class="w-full md:w-1/5 p-6 flex flex-col">
-            <a href="{{ url("annonce=". $annonce->id) }}">
+            <a href="{{ url("annonce=". $annonce->id) }}" class="w-64 h-64">
                 @if ($annonce->images->isNotEmpty())
-                    <img class="hover:grow hover:shadow-lg " style="height: 200px ; width: 300px" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                    <img class="hover:grow hover:shadow-lg h-full w-full object-cover" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                 @else
-
-                    <img class="hover:grow hover:shadow-lg" style="height: 200px ; width: 300px" src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
+                    <img class="hover:grow hover:shadow-lg h-full w-full object-cover" src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
                 @endif
             </a>
 
-            <div class="pt-3 flex items-center justify-between favoris-toggle">
+
+
+        <div class="pt-3 flex items-center justify-between favoris-toggle">
                 <div>
                     <form wire:submit.prevent="toggleFavori({{ $annonce->id }})">
                         @csrf
