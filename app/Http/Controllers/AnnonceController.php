@@ -44,18 +44,20 @@ class AnnonceController extends Controller
         ]);
 
         // Traitement des images téléchargées
-        foreach ($request->file('images') as $image) {
-            // Génération d'un nom de fichier unique
-            $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
+        if ($request->file('images')) {
+            foreach ($request->file('images') as $image) {
+                // Génération d'un nom de fichier unique
+                $imageName = uniqid() . '_' . time() . '.' . $image->getClientOriginalExtension();
 
-            // Téléchargement de l'image et stockage dans le dossier public avec le nom généré
-            $path = $image->storeAs('public/images', $imageName);
+                // Téléchargement de l'image et stockage dans le dossier public avec le nom généré
+                $path = $image->storeAs('public/images', $imageName);
 
-            // Création de l'enregistrement de l'image associée à l'annonce
-            Image::create([
-                'annonce_id' => $annonce->id, // Associer l'image à l'annonce créée
-                'url_image' => 'storage/images/' . $imageName, // Stocker le chemin de l'image dans la base de données
-            ]);
+                // Création de l'enregistrement de l'image associée à l'annonce
+                Image::create([
+                    'annonce_id' => $annonce->id, // Associer l'image à l'annonce créée
+                    'url_image' => 'storage/images/' . $imageName, // Stocker le chemin de l'image dans la base de données
+                ]);
+            }
         }
 
 

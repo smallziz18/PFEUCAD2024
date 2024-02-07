@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
 
 
 
+
         Annonce::factory()->count(50)->create();
 
 
