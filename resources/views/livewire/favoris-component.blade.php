@@ -11,7 +11,7 @@
             <a href="{{ url("annonce=". $annonce->id) }}">
                 @if ($annonce->images->isNotEmpty())
                     <!-- Afficher la première image de l'annonce s'il y en a -->
-                    <img class="hover:grow hover:shadow-lg" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                    <img class="hover:grow hover:shadow-lg h-0" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                 @else
                     <!-- Afficher un message si aucune image n'est associée à l'annonce -->
                     <img src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
