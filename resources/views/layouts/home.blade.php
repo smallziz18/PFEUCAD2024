@@ -214,7 +214,7 @@
             // Update current index
             currentIndex = index;
             // Update indicators
-            updateIndicators();
+
         }
 
         // Function to show previous slide

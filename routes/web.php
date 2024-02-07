@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\FavorisComponent;
 use App\Models\User;
@@ -10,7 +11,7 @@ use App\Models\Annonce;
 use App\Models\Image;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\FavorisController;
+
 
 /*
 |--------------------------------------------------------------------------
