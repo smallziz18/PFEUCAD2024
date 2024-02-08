@@ -5,7 +5,8 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé.Si vous vous etes connecté avec Google ou Github votre mot de passe par defaut sera votre adresse mail') }}
+            {{ __('Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé. ') }}
+        <p class="text-blue-700">Si vous avez créer votre compte avec Google ou Github votre mot de passe par defaut sera votre adresse mail !! <span class="text-red-700">Changer votre Mot de passe le plus vite possible</span></p>
         </p>
     </header>
 

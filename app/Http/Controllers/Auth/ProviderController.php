@@ -18,6 +18,7 @@ class ProviderController extends Controller
     public function callback($provider)
     {
         $SocialUser = Socialite::driver($provider)->stateless()->user();
+
         $user = User::where('email', $SocialUser->email)->first();
         if($user){
             Auth::login($user);
