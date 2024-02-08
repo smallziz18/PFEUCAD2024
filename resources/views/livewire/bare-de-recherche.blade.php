@@ -3,7 +3,7 @@
 
         <label>
             <input class="bg-gray-300 text-gray-700 border-2 w-56 mt-1
-        focus-visible:outline-none placeholder:text-gray-400 rounded-full"
+        focus-visible:outline-none placeholder:text-gray-400 rounded-full "
                    placeholder="rechercher une annonce " wire:model.live="query">
         </label>
         <svg
@@ -16,9 +16,11 @@
            @if(strlen($query)>1)
                <div>
                    @if(count($annonces)>0)
+                       <p class="text-blue-700">{{count($annonces)}} resultats</p>
                        @foreach($annonces as $annonce)
-                           <a href="{{ url("annonce=". $annonce->id) }}">
+                           <a class="hover: bg-amber-400" href="{{ url("annonce=". $annonce->id) }}">
                                <p class="p-1 ">{{$annonce->titre}}</p>
+
                            </a>
 
                        @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RechercheController;
@@ -91,6 +92,15 @@ Route::get('/images={filename}', [AnnonceController::class, 'showImg'])->name('i
 Route::post('/addFavoris', [FavorisComponent::class,'toggleFavori'])
     ->middleware(['auth', 'verified'])
     ->name('addfavoris');
+
+
+Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
+
+Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
+
+
+
+
 
 
 
