@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail,FilamentUser
         'telephone',
         'prenom',
         'remember_token',
+        'email_verified_at',
 
 
 
