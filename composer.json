@@ -11,6 +11,7 @@
         "php": "^8.1",
         "filament/filament": "^3.0-stable",
         "filament/forms": "^3.0-stable",
+        "guysolamour/laravel-cinetpay": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-frontend-presets/tall": "^7.0",
         "laravel/framework": "^10.10",
