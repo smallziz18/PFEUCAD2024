@@ -5,27 +5,30 @@
         </h2>
     </x-slot>
     <section class="bg-white py-8">
-        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-    @foreach($favoris as $favoris)
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-            <a href="{{ url("annonce=". $favoris->annonce->id) }}">
-                @if ($favoris->annonce->images->isNotEmpty())
-                    <!-- Afficher la première image de l'annonce s'il y en a -->
-                    <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 300px" src="{{ $favoris->annonce->images->first()->url_image }}" alt="Image de l'annonce">
-                @else
-                    <!-- Afficher un message si aucune image n'est associée à l'annonce -->
-                    <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 300px" src="Pas_d'image_disponible.svg.png">
-                @endif
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"> <!-- Ajout de la classe gap-4 pour créer un espace de 4 unités entre les éléments de la grille -->
+                @foreach($favoris as $favori)
+                    <div class="flex flex-col">
+                        <a href="{{ url("annonce=". $favori->annonce->id) }}">
+                            @if ($favori->annonce->images->isNotEmpty())
+                                <div class="image-container" style="height: 300px;">
+                                    <img class="hover:grow hover:shadow-lg" style="height: 100%; width: 100%;" src="{{ $favori->annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                                </div>
+                            @else
+                                <div class="image-container" style="height: 300px;">
+                                    <img class="hover:grow hover:shadow-lg" style="height: 100%; width: 100%;" src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
+                                </div>
+                            @endif
 
-                <div class="pt-3 flex items-center justify-between">
-                    <p class="">{{ $favoris->annonce->titre }}</p>
+                            <div class="pt-3 flex items-center justify-between">
+                                <p class="">{{ $favori->annonce->titre }}</p>
+                            </div>
 
-                </div>
-
-                <p>{{ $favoris->annonce->created_at->format('d/m/Y') }}</p>
-            </a>
-        </div>
-    @endforeach
+                            <p>{{ $favori->annonce->created_at->format('d/m/Y') }}</p>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
 </x-app-layout>
