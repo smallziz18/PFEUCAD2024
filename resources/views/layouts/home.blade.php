@@ -8,8 +8,10 @@
     <title>Dakar Deals</title>
     <meta name="description" content="Free open source Tailwind CSS Store template">
     <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,store template, shop layout, minimal, monochrome, minimalistic, theme, nordic">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
 
@@ -67,7 +69,53 @@
         }
     </style>
 
+    <style>
+        /* Ajoutez vos styles existants ici */
 
+        /* Styles pour le menu hamburger et le menu mobile */
+        #mobile-menu {
+            display: none;
+            position: absolute;
+            top: 60px; /* Ajustez selon vos besoins */
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        #mobile-menu a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s;
+        }
+
+        #mobile-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Styles pour le bouton hamburger */
+        #hamburger-button {
+            display: none;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            #mobile-menu {
+                display: block;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            #hamburger-button {
+                display: block;
+            }
+        }
+    </style>
 
 
 </head>
@@ -75,82 +123,115 @@
 <body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
 
 <!--Nav-->
-<nav id="header" class="w-full z-30 top-0 py-1 fixed bg-white" >
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-
-        <label for="menu-toggle" class="cursor-pointer md:hidden block">
-            <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                <title>menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
-        </label>
-        <input class="hidden" type="checkbox" id="menu-toggle" />
-
-        <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
-            <nav>
-                <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-
-                    @livewire('bare-de-recherche')
-                </ul>
-            </nav>
-        </div>
-
-        <div class="order-1 md:order-2">
-            <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="">
-                Dakar Deals
-                <svg class="fill-current text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<header>
+    <nav class="flex items-center justify-between flex-col md:flex-row px-8 mt-5">
+        <div class="mb-4 md:mb-0">
+            <a class="flex items-center justify-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="">
+                <p class="mr-2">Dakar Deals</p>
+                <svg class="fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M5,22h14c1.103,0,2-0.897,2-2V9c0-0.553-0.447-1-1-1h-3V7c0-2.757-2.243-5-5-5S7,4.243,7,7v1H4C3.447,8,3,8.447,3,9v11 C3,21.103,3.897,22,5,22z M9,7c0-1.654,1.346-3,3-3s3,1.346,3,3v1H9V7z M5,10h2v2h2v-2h6v2h2v-2h2l0.002,10H5V10z" />
                 </svg>
-
-
-
             </a>
         </div>
-
-        <div class="order-2 md:order-3 flex items-center" id="nav-content">
-
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                       <x-danger-button>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <a href="route('logout')"
-                                             onclick="event.preventDefault();
-                                                this.closest('form').submit();" >
-                                {{ __('Se deconnecter') }}
-                            </a>
-                        </form>
-                        </x-danger-button>
-                        <x-primary-button>
-                        <a href="{{ route('addannonce') }}" >Ajouter Annonce</a>
-                        </x-primary-button>
-                        <x-primary-button>
-                        <a href="{{ url('/profile') }}" >Mon profil</a>
-                        </x-primary-button>
-                    @else
-                        <x-primary-button>
-                        <a href="{{ route('login') }}" >Se connecter</a>
-                        </x-primary-button>
-                        @if (Route::has('register'))
-                            <x-primary-button>
-                            <a href="{{ route('register') }}" >S'inscrire</a>
-                            </x-primary-button>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+        <div class="pl-2">
+            <ion-icon name="search-outline" class="text-3xl"></ion-icon>
 
         </div>
-    </div>
-</nav>
+        <div class="navlinks md:flex">
+            <ul class="flex md:flex-row flex-col items-center gap-4">
+                @if (Route::has('login'))
+
+                    @auth
+
+                        <li class="bg-[#a6c1ee] text-gray-500">
+                            <x-danger-button class="rounded">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <a href="route('logout')"
+                                       onclick="event.preventDefault();
+                                                this.closest('form').submit();" >
+                                        {{ __('Se deconnecter') }}
+                                    </a>
+                                </form>
+                            </x-danger-button>
+                        </li>
+                        <li class= "bg-[#a6c1ee] text-gray-500">
+                            <x-primary-button class="rounded">
+                                <a href="{{ route('addannonce') }}" >Ajouter Annonce</a>
+                            </x-primary-button>
+
+                        </li>
+
+                        <li class="bg-[#a6c1ee] text-gray-500">
+                            <x-primary-button class="rounded">
+                                <a href="{{ route('addannonce') }}" >Ajouter Annonce</a>
+                            </x-primary-button>
+
+                        </li>
+
+
+                    @else
+
+                        <li>
+                            <x-primary-button class="rounded">
+                                <a href="{{ route('login') }}" >Se connecter</a>
+                            </x-primary-button>
+                        </li>
+
+                        @if (Route::has('register'))
+                            <li>
+                                <x-primary-button class="rounded">
+                                    <a href="{{ route('register') }}" >S'inscrire</a>
+                                </x-primary-button>
+                            </li>
+
+
+                        @endif
+                    @endauth
+
+                @endif
+            </ul>
+        </div>
+
+        <div class="md:hidden">
+            <!-- Icône du menu -->
+            <ion-icon class="text-3xl cursor-pointer" name="menu-outline" onclick="toggleMenu()"></ion-icon>
+        </div>
+    </nav>
+</header>
+
+
+<script>
+    const navlinks = document.querySelector('.navlinks');
+    const icon = document.querySelector('[name="menu-outline"]');
+
+    function toggleMenu() {
+        const iconName = icon.getAttribute('name');
+
+        if (iconName === 'menu-outline') {
+            icon.setAttribute('name', 'close-outline');
+            // Afficher les boutons lorsque le menu est ouvert
+            navlinks.classList.remove('hidden');
+        } else {
+            icon.setAttribute('name', 'menu-outline');
+            // Cacher les boutons lorsque le menu est fermé
+            navlinks.classList.add('hidden');
+        }
+    }
+</script>
 
 
 
 
 
-<div id="indicators-carousel" class="relative max-w-screen-xl mx-auto border-2 border-solid border-amber-700" data-carousel="static">
+
+
+
+
+
+
+<div id="indicators-carousel" class="relative max-w-screen-xl mx-auto border-2 m-16 border-solid border-amber-700" data-carousel="static">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
         @foreach($annonces as $key => $annonce)
