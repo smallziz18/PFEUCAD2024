@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\FavorisController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RechercheController;
 use App\Livewire\FavorisComponent;
@@ -55,7 +56,7 @@ Route::post('/email/verification-notification',function (\Illuminate\Http\Reques
 
 })->middleware(['auth','throttle:6.1'])->name('verification.send');
 
-Route::get('/annonce={id}', [AnnonceController::class, 'show']);
+Route::get('/annonce={id}', [AnnonceController::class, 'show'])->name('annonce.show');
 
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -97,6 +98,11 @@ Route::post('/addFavoris', [FavorisComponent::class,'toggleFavori'])
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
 
 Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
+
+Route::get('/cinetpay/cancel', [PaymentController::class, 'cancel'])->name('cinetpay.cancel');
+Route::post('/cinetpay/notify', [PaymentController::class, 'notify'])->name('cinetpay.notify');
+Route::post('/cinetpay/return', [PaymentController::class, 'return'])->name('cinetpay.return');
+
 
 
 

@@ -192,6 +192,10 @@
                 </div>
                 </div>
             @endif
+<form method="post" action={{route('cinetpay.return')}}>
+    @csrf
+    <x-primary-button>payer</x-primary-button>
+</form>
 
         </div>
     </section>
