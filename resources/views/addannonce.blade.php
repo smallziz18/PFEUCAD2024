@@ -177,6 +177,13 @@
                 <label for="prix" class="form-label">Prix</label>
                 <input type="number" id="prix" name="prix" class="form-control">
             </div>
+            <div class="form-group">
+                <label>Produit livrable :</label><br>
+                <input type="radio" id="livrable_oui" name="livrable" value="1" >
+                <label for="livrable_oui">Oui</label><br>
+                <input type="radio" id="livrable_non" name="livrable" value="0" >
+                <label for="livrable_non">Non</label>
+            </div>
 
             <div class="form-group">
                 <label for="photos" class="form-label">Photos</label>

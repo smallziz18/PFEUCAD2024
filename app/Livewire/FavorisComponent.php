@@ -36,6 +36,10 @@ class FavorisComponent extends Component
                     'user_id' => Auth::id(),
                     'annonce_id' => $annonceId,
                 ]);
+                $annonce = Annonce::findOrFail($annonceId);
+                $annonce->like++;
+                $annonce->save();
+
 
 
                 session()->flash('message', 'Annonce ajoutée aux favoris avec succès.');

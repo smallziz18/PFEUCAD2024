@@ -32,6 +32,7 @@ class AnnonceController extends Controller
             'categorie' => 'required|string',
             'prix' => 'required|numeric',
             'images.*' => 'image|mimes:jpeg,png|max:2048', // Les images doivent être de type jpeg ou png et ne pas dépasser 2 Mo
+            'livrable'=>'required|boolean',
         ]);
 
         // Création de l'annonce
@@ -41,6 +42,7 @@ class AnnonceController extends Controller
             'prix' => $request->prix,
             'description' => $request->description,
             'categorie' => $request->categorie,
+            'livrable'=>$request->livrable,
         ]);
 
         // Traitement des images téléchargées

@@ -17,9 +17,11 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('titre');
             $table->text('description');
-            $table->decimal('prix');
+            $table->unsignedBigInteger('prix');
             $table->string('categorie');
             $table->boolean('statu')->default(false);
+            $table->unsignedBigInteger('like')->default(0);
+            $table->boolean('livrable')->default(false);
             $table->timestamps();
 
         });

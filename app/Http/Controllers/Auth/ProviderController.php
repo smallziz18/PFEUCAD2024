@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+use mysql_xdevapi\Exception;
 
 class ProviderController extends Controller
 {
@@ -17,6 +18,9 @@ class ProviderController extends Controller
     }
     public function callback($provider)
     {
+        try {
+
+
         $SocialUser = Socialite::driver($provider)->stateless()->user();
 
         $user = User::where('email', $SocialUser->email)->first();
@@ -39,5 +43,8 @@ class ProviderController extends Controller
         }
 
         return redirect('/');
+        }catch (Exception){
+            return redirect('/');
+        }
     }
 }
