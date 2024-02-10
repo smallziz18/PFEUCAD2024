@@ -22,6 +22,8 @@ return new class extends Migration
             $table->boolean('statu')->default(false);
             $table->unsignedBigInteger('like')->default(0);
             $table->boolean('livrable')->default(false);
+            $table->unsignedBigInteger('vue')->default(0);
+
             $table->timestamps();
 
         });

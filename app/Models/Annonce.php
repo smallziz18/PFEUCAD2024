@@ -16,7 +16,7 @@ class Annonce extends Model
 
 
     protected $fillable = [
-        'user_id', 'titre', 'description', 'prix', 'categorie', 'statu','livrable','like'
+        'user_id', 'titre', 'description', 'prix', 'categorie', 'statu','livrable','like','vue'
     ];
 
     public function user(): BelongsTo

@@ -85,6 +85,8 @@ class AnnonceController extends Controller
             ->where('annonces.id', $id)
             ->get();
         $user= User::where('id',$annonce->user_id)->first();
+        $annonce->vue++;
+        $annonce->save();
 
         return view('show', compact('annonce', 'images','user'));
     }
