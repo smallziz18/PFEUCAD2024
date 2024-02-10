@@ -192,6 +192,7 @@
                         </a>
                         <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de like : {{$annonce->like}}</h3>
                         <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de vue : {{$annonce->vue}}</h3>
+                        @if() @endif
 
 
 
