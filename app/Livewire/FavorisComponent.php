@@ -26,6 +26,9 @@ class FavorisComponent extends Component
                 Favoris::where('user_id', Auth::id())
                     ->where('annonce_id', $annonceId)
                     ->delete();
+                $annonce = Annonce::findOrFail($annonceId);
+                $annonce->like++;
+                $annonce->save();
 
 
                 session()->flash('message', 'Annonce retirée des favoris avec succès.');
