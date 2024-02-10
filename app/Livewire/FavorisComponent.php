@@ -27,7 +27,7 @@ class FavorisComponent extends Component
                     ->where('annonce_id', $annonceId)
                     ->delete();
                 $annonce = Annonce::findOrFail($annonceId);
-                $annonce->like++;
+                $annonce->like--;
                 $annonce->save();
 
 
