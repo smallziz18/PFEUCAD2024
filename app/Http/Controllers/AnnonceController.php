@@ -75,8 +75,10 @@ class AnnonceController extends Controller
     public function show($id)
     {
         $annonce = Annonce::where('id', $id)->first();
-        $commentaire=Commentaire::where('annonce_id',$id)->get();
-        $commentaireuser='';
+        $commentaire=Commentaire::where('annonce_id',$id)
+        ->with('user')
+        ->get();
+
 
 
         if (!$annonce) {
@@ -92,7 +94,7 @@ class AnnonceController extends Controller
         $annonce->vue++;
         $annonce->save();
 
-        return view('show', compact('annonce', 'images','user','commentaire','commentaireuser'));
+        return view('show', compact('annonce', 'images','user','commentaire'));
     }
 
     public function showAnnoncesWithImages(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
