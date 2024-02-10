@@ -87,6 +87,7 @@ Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth
 Route::post('/ajouter_annnoce', [AnnonceController::class, 'ajouterProduit']);
 Route::post('/ajouter_commentaire', [\App\Http\Controllers\CommentaireController::class, 'ajouter_commentaire']);
 Route::get('/images={filename}', [AnnonceController::class, 'showImg'])->name('image.show');
+Route::post('/signaler', [AnnonceController::class, 'signaler']);
 
 
 

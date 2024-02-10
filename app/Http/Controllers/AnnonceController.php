@@ -6,6 +6,7 @@ use App\Models\Annonce;
 use App\Models\Commentaire;
 use App\Models\Favoris;
 use App\Models\Image;
+use App\Models\Signal;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
@@ -102,6 +104,32 @@ class AnnonceController extends Controller
         $annonces = Annonce::with('image')->get();
         return view('layouts.home', ['annonces' => $annonces]);
     }
+    public function signaler(Request $request)
+    {
+        $id = $request->input('annonce_id');
+        $signalExist = Signal::where('annonce_id', $id)->exists();
+
+        if ($signalExist) {
+            $signal = Signal::where('annonce_id', $id)->first();
+            $signal->nombre_signal++;
+            $signal->save();
+            if ($signal->nombre_signal > 9) {
+                $annonce = Annonce::where('id', $id)->first();
+                $annonce->statu = 0;
+                $annonce->save();
+            }
+        } else {
+            Signal::create([
+                'annonce_id' => $id,
+                'nombre_signal' => 0
+            ]);
+        }
+
+        Session::flash('signal', 'Merci pour votre contribution');
+
+        return redirect()->back();
+    }
+
     public function update(Request $request)
     {
         $id = $request->input('id');
