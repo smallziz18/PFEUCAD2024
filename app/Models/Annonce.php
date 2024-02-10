@@ -32,6 +32,10 @@ class Annonce extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Commentaire::class);
+    }
     public function isFavoritedByUser($userId): bool
     {
         return $this->favoris()->where('user_id', $userId)->exists();

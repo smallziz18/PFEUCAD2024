@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\Commentaire;
 use App\Models\Favoris;
 use App\Models\Image;
 use App\Models\User;
@@ -74,6 +75,9 @@ class AnnonceController extends Controller
     public function show($id)
     {
         $annonce = Annonce::where('id', $id)->first();
+        $commentaire=Commentaire::where('annonce_id',$id)->get();
+        $commentaireuser='';
+
 
         if (!$annonce) {
             abort(404);
@@ -88,7 +92,7 @@ class AnnonceController extends Controller
         $annonce->vue++;
         $annonce->save();
 
-        return view('show', compact('annonce', 'images','user'));
+        return view('show', compact('annonce', 'images','user','commentaire','commentaireuser'));
     }
 
     public function showAnnoncesWithImages(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application

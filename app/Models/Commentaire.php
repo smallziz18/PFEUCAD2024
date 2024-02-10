@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favoris extends Model
+class Commentaire extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','annonce_id'
+        'user_id','annonce_id','commentaire'
 
     ];
     public function annonce()

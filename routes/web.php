@@ -85,6 +85,7 @@ Route::get('/userfavoris', [FavorisController::class, 'index'])
 Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
 
 Route::post('/ajouter_annnoce', [AnnonceController::class, 'ajouterProduit']);
+Route::post('/ajouter_commentaire', [\App\Http\Controllers\CommentaireController::class, 'ajouter_commentaire']);
 Route::get('/images={filename}', [AnnonceController::class, 'showImg'])->name('image.show');
 
 

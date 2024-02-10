@@ -191,11 +191,44 @@
                         </a>
                 </div>
                 </div>
-            @endif
-
-
         </div>
     </section>
+                <section class="bg-white py-8">
+            @endif
+                <div class=" bg-gray-100 p-4 rounded-lg mb-4" style="max-height: 200px; overflow-y: auto;">
+                    @if($commentaire)
+
+                        @foreach ($commentaire as $comment)
+
+                            <div class="mt-2">
+
+                                <p class="text-sm font-medium text-gray-900">{{ $comment->commentaire }}</p>
+
+                            </div>
+
+                        @endforeach
+                    @else
+                        <p>Aucun commentaire trouvé.</p>
+
+                    @endif
+                </div>
+                <form method="POST" action="{{ url('/ajouter_commentaire') }}" enctype="multipart/form-data">
+                @csrf
+                    <div class="mb-6">
+                        <label for="commentaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Commentaire </label>
+                        <input type="text" id="commentaire" name="commentaire" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+                    <input type="hidden" name="annonce_id" value="{{$annonce->id}}">
+                    <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Commenter</button>
+
+
+                </form>
+                </section>
+
+
+
+
 
     </div>
 </section>

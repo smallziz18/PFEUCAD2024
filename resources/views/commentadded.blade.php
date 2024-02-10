@@ -10,7 +10,7 @@
 
                     <!-- Afficher le message de succès -->
                     <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-                        <p class="font-bold">Annonce Ajouté avec Succès ! </p>
+                        <p class="font-bold">Commentaire Ajouté avec Succès ! </p>
 
                     </div>
 
@@ -21,4 +21,5 @@
         </div>
     </div>
 </x-app-layout>
+
 
