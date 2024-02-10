@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('prix');
             $table->string('categorie');
-            $table->boolean('statu')->default(false);
+            $table->boolean('statu')->default(true);
             $table->unsignedBigInteger('like')->default(0);
             $table->boolean('livrable')->default(false);
             $table->unsignedBigInteger('vue')->default(0);

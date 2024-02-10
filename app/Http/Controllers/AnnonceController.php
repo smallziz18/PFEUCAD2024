@@ -154,6 +154,9 @@ class AnnonceController extends Controller
         $id = $request->input('id');
         $annonce = Annonce::findOrFail($id);
         $images = Image::where('annonce_id', $id)->get();
+        Signal::where('annonce_id', $id)->delete();
+        Commentaire::where('annonce_id', $id)->delete();
+
 
         foreach ($images as $image) {
             if ($image->image_url){
