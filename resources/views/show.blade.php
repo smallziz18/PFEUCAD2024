@@ -145,97 +145,65 @@
         </div>
     </div>
 </nav>
-<section class="bg-white py-8" >
+<section class="bg-white py-8">
+    <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 
-    <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12" style="margin-top: 100px">
 
+        <!-- Affichage des images de l'annonce -->
+        <div class="flex flex-wrap mt-4">
+            @foreach($images as $image)
+                <div class="w-full md:w-1/3 xl:w-1/4 p-2">
+                    <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 1000px" src="{{ $image->image_url }}" alt="Image de l'annonce">
+                </div>
+            @endforeach
+        </div>
 
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __($annonce->titre) }}
-        </h2>
+        <!-- Détails de l'annonce -->
+        <div class="w-full md:w-1/2 p-4">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __($annonce->titre) }}
+            </h2>
+            <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Détails de l'annonce</h3>
+            <p>Date : {{ $annonce->created_at->format('d/m/Y') }}</p>
+            <p>Publié Par : {{ $user->name }}</p>
+            <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{ $user->name }}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer">Numéro : {{ $user->telephone }}</a>
+            <p>Nombre de like : {{ $annonce->like }}</p>
+            <p>Nombre de vue : {{ $annonce->vue }}</p>
+        </div>
 
-    <section class="bg-white py-8">
-        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-
-            @if ($images->isNotEmpty())
-                @foreach($images as $image)
-                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-
-                        <img class="hover:grow hover:shadow-lg mb-4" style="height: 300px ; width: 300px"  src="{{ $image->image_url }}" alt="Image de l'annonce">
-
-                    </div>
-                @endforeach
-                    <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-                        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Date :{{ $annonce->created_at->format('d/m/Y') }}</h3>
-                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Publié Par :{{$user->name}}</h3>
-                            <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{$user->name}}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer">
-                                <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                                    Numéro : {{ $user->telephone }}
-                                </h3>
-                            </a>
-                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de like : {{$annonce->like}}</h3>
-                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de vue : {{$annonce->vue}}</h3>
-
+        <!-- Section des commentaires -->
+        <div class="w-full md:w-1/2 p-4">
+            <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Commentaires</h3>
+            <div class="max-h-72 overflow-auto bg-gray-100 p-4 rounded-lg mb-4">
+                @if($commentaire)
+                    @foreach ($commentaire as $comment)
+                        <div class="mt-2">
+                            <p class="text-sm font-medium text-gray-900">{{ $comment->user->name }} : {{ $comment->commentaire }}</p>
                         </div>
-                    </div>
+                    @endforeach
+                @else
+                    <p>Aucun commentaire trouvé.</p>
+                @endif
+            </div>
 
-            @else
-                <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <img src="storage/images/Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
-                        <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Publié Par :{{$user->name}}</h3>
-                        <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{$user->name}}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer">
-                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                                Numéro : {{ $user->telephone }}
-                            </h3>
-                        </a>
-                        <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de like : {{$annonce->like}}</h3>
-                        <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de vue : {{$annonce->vue}}</h3>
-
-
-                    </div>
+            <!-- Formulaire pour ajouter un commentaire -->
+            <form method="POST" action="{{ url('/ajouter_commentaire') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-4">
+                    <label for="commentaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter un commentaire</label>
+                    <textarea id="commentaire" name="commentaire" rows="3" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                </div>
+                <input type="hidden" name="annonce_id" value="{{ $annonce->id }}">
+                <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::id() }}">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Commenter</button>
+            </form>
+            @if(Session::has('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Succès!</strong>
+                    <span class="block sm:inline">{{ Session::get('success') }}</span>
                 </div>
             @endif
         </div>
-    </section>
-
-        <div class=" bg-gray-100 p-4 rounded-lg mb-4" style="max-height: 200px; overflow-y: auto;">
-
-                    @if($commentaire)
-
-                        @foreach ($commentaire as $comment)
-
-                            <div class="mt-2">
-                                <p class="text-sm font-medium text-gray-900">{{ $comment->user->name }} : {{$comment->commentaire}}</p>
-
-                            </div>
-                        </div>
-
-                        @endforeach
-                    @else
-                        <p>Aucun commentaire trouvé.</p>
-
-                    @endif
-        </div>
-
-                <form method="POST" action="{{ url('/ajouter_commentaire') }}" enctype="multipart/form-data">
-                @csrf
-                    <div class="mb-6">
-                        <label for="commentaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Commentaire </label>
-                        <input type="text" id="commentaire" name="commentaire" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    </div>
-                    <input type="hidden" name="annonce_id" value="{{$annonce->id}}">
-                    <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Commenter</button>
-
-
-                </form>
-
-
-
-
-
-
     </div>
 </section>
+
