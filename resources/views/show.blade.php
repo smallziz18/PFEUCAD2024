@@ -148,31 +148,37 @@
 <section class="bg-white py-8">
     <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 
-
-        <!-- Affichage des images de l'annonce -->
-        <div class="flex flex-wrap mt-4">
-            @foreach($images as $image)
-                <div class="w-full md:w-1/3 xl:w-1/4 p-2">
-                    <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 1000px" src="{{ $image->image_url }}" alt="Image de l'annonce">
-                </div>
-            @endforeach
+        <!-- Bloc des images de l'annonce -->
+        <div class="w-full py-4">
+            <div class="flex flex-wrap justify-center">
+                @if($images)
+                    @foreach($images as $image)
+                        <div class="w-full md:w-1/3 xl:w-1/4 p-2">
+                            <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 1000px" src="{{ $image->image_url }}" alt="Image de l'annonce">
+                        </div>
+                    @endforeach
+                @else
+                    <div class="w-full md:w-1/3 xl:w-1/4 p-2">
+                        <img class="hover:grow hover:shadow-lg" style="height: 300px ; width: 1000px" src="Pas_d'image_disponible.svg.png" alt="Image de l'annonce">
+                    </div>
+                @endif
+            </div>
         </div>
 
-        <!-- Détails de l'annonce -->
-        <div class="w-full md:w-1/2 p-4">
+        <!-- Bloc des détails de l'annonce -->
+        <div class="w-full md:w-1/2 md:ml-8 p-4 ">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __($annonce->titre) }}
             </h2>
-            <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Détails de l'annonce</h3>
-            <p>Date : {{ $annonce->created_at->format('d/m/Y') }}</p>
-            <p>Publié Par : {{ $user->name }}</p>
-            <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{ $user->name }}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer">Numéro : {{ $user->telephone }}</a>
-            <p>Nombre de like : {{ $annonce->like }}</p>
-            <p>Nombre de vue : {{ $annonce->vue }}</p>
+            <p class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Date : {{ $annonce->created_at->format('d/m/Y') }}</p>
+            <p class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Publié Par : {{ $user->name }}</p>
+            <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{ $user->name }}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer" class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Numéro : {{ $user->telephone }}</a>
+            <p class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Nombre de like : {{ $annonce->like }}</p>
+            <p class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Nombre de vue : {{ $annonce->vue }}</p>
         </div>
 
-        <!-- Section des commentaires -->
-        <div class="w-full md:w-1/2 p-4">
+        <!-- Bloc des commentaires -->
+        <div class="w-full md:w-1/2 md:ml-8 p-4">
             <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">Commentaires</h3>
             <div class="max-h-72 overflow-auto bg-gray-100 p-4 rounded-lg mb-4">
                 @if($commentaire)
@@ -206,4 +212,5 @@
         </div>
     </div>
 </section>
+
 

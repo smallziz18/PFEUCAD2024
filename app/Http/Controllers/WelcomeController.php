@@ -9,7 +9,9 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $annonces = Annonce::with('images', 'user')->paginate(100);
+        $annonces = Annonce::with('images', 'user')
+            ->orderByDesc('like')
+            ->paginate(100);
         return view('welcome', compact('annonces'));
     }
 }
