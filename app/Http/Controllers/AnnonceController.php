@@ -125,7 +125,7 @@ class AnnonceController extends Controller
             ]);
         }
 
-        Session::flash('signal', 'Merci pour votre contribution');
+        Session::flash('signal', 'Merci pour votre contribution. Votre signal sera pris en consideration');
 
         return redirect()->back();
     }
