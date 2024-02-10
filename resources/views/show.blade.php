@@ -192,36 +192,33 @@
                         </a>
                         <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de like : {{$annonce->like}}</h3>
                         <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Nombre de vue : {{$annonce->vue}}</h3>
-                        @if($annonce->livrable)
-
-                            <a href="#" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        @endif
-
 
 
                     </div>
                 </div>
+            @endif
         </div>
     </section>
-                <section class="bg-white py-8">
-            @endif
-                <div class=" bg-gray-100 p-4 rounded-lg mb-4" style="max-height: 200px; overflow-y: auto;">
+
+        <div class=" bg-gray-100 p-4 rounded-lg mb-4" style="max-height: 200px; overflow-y: auto;">
+
                     @if($commentaire)
 
                         @foreach ($commentaire as $comment)
 
                             <div class="mt-2">
-
                                 <p class="text-sm font-medium text-gray-900">{{ $comment->user->name }} : {{$comment->commentaire}}</p>
 
                             </div>
+                        </div>
 
                         @endforeach
                     @else
                         <p>Aucun commentaire trouvé.</p>
 
                     @endif
-                </div>
+        </div>
+
                 <form method="POST" action="{{ url('/ajouter_commentaire') }}" enctype="multipart/form-data">
                 @csrf
                     <div class="mb-6">
@@ -234,7 +231,7 @@
 
 
                 </form>
-                </section>
+
 
 
 
