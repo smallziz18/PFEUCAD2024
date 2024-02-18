@@ -138,6 +138,7 @@ class AnnonceController extends Controller
             'description' => 'required|string',
             'prix' => 'required|numeric',
             'categorie' => 'required|string',
+
         ]);
         $annonce = Annonce::findOrFail($id);
         $annonce->titre = $request->input('titre');

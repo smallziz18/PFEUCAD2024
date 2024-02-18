@@ -34,7 +34,7 @@
                         <form method="post" action="{{ route('annonces.delete', ['id' => $annonce->id]) }}" class="inline">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
+                            <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
                         </form>
                     </td>
                 </tr>

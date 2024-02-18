@@ -13,7 +13,11 @@ class CommentaireController extends Controller
 {
 public function ajouter_commentaire(Request $request)
    {
-       if (Auth::check()) {
+       if (!Auth::check()) {
+           Redirect::route('login');
+
+       }else{
+
            Commentaire::create([
                'user_id' => Auth::id(),
                'annonce_id' => $request->input('annonce_id'),
@@ -22,9 +26,6 @@ public function ajouter_commentaire(Request $request)
            Session::flash('success', 'Le commentaire a été inséré avec succès.');
 
            return redirect()->back();
-
-       }else{
-           Redirect::route('login');
        }
    }
 }

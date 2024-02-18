@@ -6,9 +6,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RechercheController;
 use App\Livewire\FavorisComponent;
+use App\Models\Commentaire;
 use App\Models\User;
 use http\Client\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Annonce;
 use App\Models\Image;
@@ -71,6 +73,7 @@ Route::get('/annonceadded', function () {
 
 })->middleware(['auth', 'verified'])->name('annonceadded');
 
+
 Route::get('/userannonce', function () {
 
     $userannonces = Annonce::with('images')->where('user_id', auth()->id())->paginate(30);
@@ -85,7 +88,7 @@ Route::get('/userfavoris', [FavorisController::class, 'index'])
 Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
 
 Route::post('/ajouter_annnoce', [AnnonceController::class, 'ajouterProduit']);
-Route::post('/ajouter_commentaire', [\App\Http\Controllers\CommentaireController::class, 'ajouter_commentaire']);
+Route::post('/ajouter_commentaire', [\App\Http\Controllers\CommentaireController::class, 'ajouter_commentaire'])->middleware(['auth', 'verified']);
 Route::get('/images={filename}', [AnnonceController::class, 'showImg'])->name('image.show');
 Route::post('/signaler', [AnnonceController::class, 'signaler']);
 
