@@ -1,36 +1,104 @@
-<div >
-    <div class="inline-block relative">
+<div>
+    <!-- Formulaire de recherche -->
+    <form wire:submit.prevent="search" class="p-4 bg-gray-100 rounded-lg shadow-md">
+        <!-- Champ de recherche par titre -->
+        <input type="text" wire:model.lazy="searchTerm" placeholder="Rechercher par titre..." class="w-full px-4 py-2 mb-2 border rounded-lg focus:outline-none focus:border-blue-500">
 
-        <label>
-            <input class="bg-gray-300 text-gray-700 border-2 w-56 mt-1
-        focus-visible:outline-none placeholder:text-gray-400 rounded-full "
-                   placeholder="rechercher une annonce " wire:model.live="query">
-        </label>
-        <svg
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 absolute top-0 right-0 m-1">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-    </div>
+        <!-- Sélection de catégorie -->
+        <select wire:model.lazy="category" id="category" class="w-full px-4 py-2 mb-2 border rounded-lg focus:outline-none focus:border-blue-500">
+            <option value="">Toutes les catégories</option>
+            <optgroup label="Immobilier">
+                <option value="appartement">Appartements</option>
+                <option value="maison">Maisons</option>
+                <option value="terrain">Terrains</option>
+                <option value="colocation">Colocations</option>
+                <option value="bureau">Bureaux & Commerces</option>
+                <option value="location_vacances">Locations de vacances</option>
+            </optgroup>
+            <optgroup label="Véhicules">
+                <option value="voiture">Voitures</option>
+                <option value="moto">Motos</option>
+                <option value="scooter">Scooters</option>
+                <option value="vélo">Vélos</option>
+                <option value="bateau">Bateaux</option>
+                <option value="camion">Camions & Utilitaires</option>
+                <option value="caravane">Caravanes & Camping-cars</option>
+                <option value="autres_vehicules">Autres véhicules</option>
+            </optgroup>
+            <optgroup label="Électronique">
+                <option value="ordinateur">Ordinateurs</option>
+                <option value="smartphone">Smartphones</option>
+                <option value="tablettes">Tablettes</option>
+                <option value="tv">Télévisions</option>
+                <option value="audio">Audio & Hi-Fi</option>
+                <option value="photo_video">Photo & Vidéo</option>
+                <option value="accessoires_electroniques">Accessoires électroniques</option>
+            </optgroup>
+            <optgroup label="Maison et Jardin">
+                <option value="meubles">Meubles</option>
+                <option value="électroménager">Électroménager</option>
+                <option value="bricolage">Bricolage & Jardinage</option>
+                <option value="décoration">Décoration</option>
+                <option value="arts_ménagers">Arts ménagers</option>
+                <option value="jardin">Jardin & Extérieur</option>
+                <option value="autres_maison_jardin">Autres Maison & Jardin</option>
+            </optgroup>
+            <optgroup label="Mode et Accessoires">
+                <option value="vêtements">Vêtements</option>
+                <option value="chaussures">Chaussures</option>
+                <option value="sacs">Sacs & Bagagerie</option>
+                <option value="bijoux">Bijoux & Montres</option>
+                <option value="vêtements_enfants">Vêtements Enfants & Bébés</option>
+                <option value="accessoires_mode">Accessoires de mode</option>
+            </optgroup>
+            <optgroup label="Loisirs">
+                <option value="livres">Livres & Magazines</option>
+                <option value="musique">Musique & Instruments</option>
+                <option value="films">Films & DVD</option>
+                <option value="jeux_video">Jeux vidéo & Consoles</option>
+                <option value="sports_loisirs">Sports & Loisirs</option>
+                <option value="billets">Billets & Événements</option>
+                <option value="collections">Collections & Antiquités</option>
+            </optgroup>
+            <optgroup label="Services">
+                <option value="cours">Cours & Formations</option>
+                <option value="services">Services à la personne</option>
+                <option value="evenements">Événements & Fêtes</option>
+                <option value="entreprises">Matériel professionnel</option>
+                <option value="autres_services">Autres Services</option>
+            </optgroup>
+            <optgroup label="Animaux">
+                <option value="chiens">Chiens</option>
+                <option value="chats">Chats</option>
+                <option value="oiseaux">Oiseaux</option>
+                <option value="rongeurs">Rongeurs</option>
+                <option value="animaux_ferme">Animaux de la ferme</option>
+                <option value="autres_animaux">Autres Animaux</option>
+            </optgroup>
+            <optgroup label="Divers">
+                <option value="autres">Autres</option>
+            </optgroup>
+        </select>
 
-       <div class="absolute border bg-gray-200 text-md w-56 mt-1 max-h-96 overflow-auto">
-           @if(strlen($query)>1)
-               <div>
-                   @if(count($annonces)>0)
-                       <p class="text-blue-700">{{count($annonces)}} resultats</p>
-                       @foreach($annonces as $annonce)
-                           <a class="hover: bg-amber-400" href="{{ url("annonce=". $annonce->id) }}">
-                               <p class="p-1 ">{{$annonce->titre}}</p>
+        <!-- Prix minimal et maximal -->
+        <input type="text" wire:model.lazy="minPrice" placeholder="Prix minimum" class="w-1/2 px-4 py-2 mb-2 mr-2 border rounded-lg focus:outline-none focus:border-blue-500">
+        <input type="text" wire:model.lazy="maxPrice" placeholder="Prix maximum" class="w-1/2 px-4 py-2 mb-2 border rounded-lg focus:outline-none focus:border-blue-500">
 
-                           </a>
+        <!-- Bouton de soumission -->
 
-                       @endforeach
-                    @else
-               <span class="p-1 text-red-800"> 0 resultats pour "{{$query}}"</span>
-                   @endif
-               </div>
-           @endif
-       </div>
+    </form>
 
-
-
+    <!-- Résultats de la recherche -->
+    <ul class="mt-4">
+        @if(!empty($annonces))
+            @foreach($annonces as $annonce)
+                <a href="{{ url('/annonce=' . $annonce->id) }}">
+                  <p class="mb-2">{{ $annonce->titre }} - {{ $annonce->prix }} €</p>
+              </a>
+            @endforeach
+        @else
+            <li>Aucun résultat trouvé</li>
+        @endif
+    </ul>
 </div>
+

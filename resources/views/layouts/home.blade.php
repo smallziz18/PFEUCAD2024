@@ -133,8 +133,12 @@
                 </svg>
             </a>
         </div>
-        <div class="pl-2">
-            <ion-icon name="search-outline" class="text-3xl"></ion-icon>
+        <div class="pl-2 flex">
+
+            <a class="flex">
+                <x-modal-search>
+                </x-modal-search>
+            </a>
 
         </div>
         <div class="navlinks md:flex">
@@ -165,7 +169,7 @@
 
                         <li class="bg-[#a6c1ee] text-gray-500">
                             <x-primary-button class="rounded">
-                                <a href="{{ route('addannonce') }}" >Ajouter Annonce</a>
+                                <a href="{{ route('profile.edit') }}" >Profile</a>
                             </x-primary-button>
 
                         </li>
