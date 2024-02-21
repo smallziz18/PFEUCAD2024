@@ -8,17 +8,14 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
     public function index()
-    {   $annoncestop = Annonce::with('images', 'user')
+    {   $annonces = Annonce::with('images', 'user')
         ->where('statu', 1)
         ->orderByDesc('vue')
-        ->take(5)
-        ->get();
+        ->orderByDesc('like')
+        ->paginate(100);
 
-        $annonces = Annonce::with('images', 'user')
-            ->where('statu',1)
-            ->orderByDesc('like')
+        $annoncestop = $annonces->splice(0, 5); // Séparer les 5 premières annonces les plus vues
 
-            ->paginate(100);
-        return view('welcome', compact('annonces','annoncestop'));
+        return view('welcome', compact('annonces', 'annoncestop'));
     }
 }
