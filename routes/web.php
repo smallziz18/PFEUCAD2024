@@ -84,6 +84,10 @@ Route::get('/userannonce', function () {
 Route::get('/userfavoris', [FavorisController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('userfavoris');
+Route::delete('/userfavoris{id}', [FavorisController::class,'delete'])->name('favori.delete');
+Route::get('/ajouterfavoris{id}', [FavorisController::class,'ajouter'])->name('favori.ajouter');
+
+
 
 Route::get('/addannonce', [AnnonceController::class, 'form'])->middleware(['auth', 'verified'])->name('addannonce');
 

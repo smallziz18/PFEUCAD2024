@@ -17,7 +17,7 @@
                 <!-- Contenu de la modal -->
                 <h2 class="text-xl font-bold mb-4">Recherche</h2>
 
-                <!-- Intégration du composant Livewire -->
+
                 @livewire('bare-de-recherche')
             </div>
         </div>

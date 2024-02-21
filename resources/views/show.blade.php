@@ -11,6 +11,27 @@
 
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
 
+<style>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+</style>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
 </head>
 
@@ -46,8 +67,24 @@
             <p>Publié Par : {{ $user->name }}</p>
             <a href="https://wa.me/{{ $user->telephone }}?text=Bonjour%20{{ $user->name }}%20,%20je%20suis%20intéressé%20par%20votre%20annonce%20{{ $annonce->titre }}%20Pourriez-vous%20m'en%20dire%20plus%20?" target="_blank" rel="noopener noreferrer">Numéro : {{ $user->telephone }}</a>
             <p>Nombre de like : {{ $annonce->like }}</p>
-            <p>Nombre de vue : {{ $annonce->vue }}</p>
+            <p>Nombre de vue : {{ $annonce->vue }}</p><br>
+            @if (!$annonce->isFavoritedByUser(Auth::id()))
+            <a href="{{ route('favori.ajouter',['id'=>$annonce]) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Ajouter au favoris</a>
+            @else
+                <form method="post" action="{{ route('favori.delete', ['id' => $annonce->id]) }}" class="inline">
+                    @csrf
+                    @method('delete')
+                    <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer des Favoris</button>
+                </form>
+            @endif
+            @if(session('message'))
+                <div class="alert alert-{{ session('status') }}">
+                    {{ session('message') }}
+                </div>
+            @endif
+
         </div>
+
 
         <!-- Bloc des commentaires -->
         <div class="w-full md:w-1/2 md:ml-8 p-4">
