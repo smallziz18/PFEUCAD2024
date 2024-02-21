@@ -29,7 +29,7 @@
                         @endif
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('userannonce', ['id' => $annonce->id]) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Détails</a>
+
                         <a href="{{ route('annonces.update', ['id' => $annonce->id]) }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Mettre à jour</a>
                         <form method="post" action="{{ route('annonces.delete', ['id' => $annonce->id]) }}" class="inline">
                             @csrf

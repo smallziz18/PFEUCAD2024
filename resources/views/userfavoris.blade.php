@@ -20,13 +20,18 @@
                                 </div>
                             @endif
 
-                            <div class="pt-3 flex items-center justify-between">
-                                <p class="">{{ $favori->annonce->titre }}</p>
-                            </div>
 
-                            <p>{{ $favori->annonce->created_at->format('d/m/Y') }}</p>
-                        </a>
-                    </div>
+                                <div class="pt-3 flex items-center justify-between">
+                                    <p class="">{{ $favori->annonce->titre }}</p>
+                                </div>
+                                <p class="pt-1 text-gray-900">{{ $favori->annonce->prix }} FCFA</p>
+                                <p>Publié Par : {{ $favori->annonce->user->name }}</p>
+                                <p>{{ $favori->annonce->created_at->format('d/m/Y') }}</p>
+                                <form method="post" action="{{ route('favori.delete', ['id' => $favori->annonce->id]) }}" class="inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer des Favoris</button>
+                                </form>
                 @endforeach
             </div>
         </div>
