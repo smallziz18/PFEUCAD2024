@@ -40,9 +40,10 @@
             <div class="w-full mx-auto flex flex-wrap">
                 <div class="flex w-full lg:w-1/2 ">
                     <div class="px-3 md:px-0">
-                        <h3 class="font-bold text-gray-900">About</h3>
+                        <h3 class="font-bold text-gray-900">A propos</h3>
                         <p class="py-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+                            Ce site web représente notre projet de fin d'études menant à l'obtention de notre diplôme de licence. Conçu avec professionnalisme par Abdoul Aziz Djouf et Cheikh Tourad, il démontre notre expertise en développement web. Nous avons déployé nos compétences techniques et notre engagement pour créer cette plateforme fonctionnelle et esthétique, en accord avec les normes académiques. Nous remercions tous ceux qui ont soutenu notre projet.
+
                         </p>
                     </div>
                 </div>
