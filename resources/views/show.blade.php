@@ -37,6 +37,10 @@
 
 <body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
 
+<x-banniere>
+
+</x-banniere>
+
 <!-- Section des détails de l'annonce -->
 <section class="bg-white py-8">
     <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
@@ -143,6 +147,9 @@
         </div>
     </div>
 </section>
+<x-footer>
+
+</x-footer>
 
 </body>
 
