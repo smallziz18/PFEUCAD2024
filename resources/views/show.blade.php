@@ -121,7 +121,7 @@
                 @csrf
                 <div class="mb-4">
                     <label for="commentaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ajouter un commentaire</label>
-                    <textarea id="commentaire" name="commentaire" rows="3" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                    <textarea id="commentaire" name="commentaire" required rows="3" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                 </div>
                 <input type="hidden" name="annonce_id" value="{{ $annonce->id }}">
                 <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::id() }}">
