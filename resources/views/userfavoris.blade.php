@@ -6,7 +6,8 @@
     </x-slot>
     <section class="bg-white py-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"> <!-- Ajout de la classe gap-4 pour créer un espace de 4 unités entre les éléments de la grille -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                
                 @foreach($favoris as $favori)
                     <div class="flex flex-col">
                         <a href="{{ url("annonce=". $favori->annonce->id) }}">

@@ -25,7 +25,8 @@
         <!-- telephone-->
         <div class="mt-4">
             <x-input-label for="telephone" :value="__('Telephone')" />
-            <x-text-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required autocomplete="phone" />
+            <x-text-input pattern="\+221\d{9}" id="telephone" class="block mt-1 w-full" type="tel" name="telephone" :value="old('telephone')" required autocomplete="phone" />
+            <p class="text-red-700">veillez rajouter la clé de votre pays</p>
             <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
         </div>
 

@@ -4,6 +4,7 @@
             {{ __('Vos Annonces Publiées') }}
         </h2>
     </x-slot>
+    
     @if(count($userannonces) > 0)
         <table class="table-auto mx-auto">
             <thead>
