@@ -29,7 +29,7 @@
         </div>
 
         <div>
-            <x-input-label for="telephone" :value="__('telephone')" />
+            <x-input-label for="telephone" :value="__('numero whatsapp')" />
             <x-text-input  id="telephone" name="telephone" type="text" class="mt-1 block w-full" :value="old('telepohne', $user->telephone)" required autofocus autocomplete="telephone" />
             <p class="text-red-700">veillez rajouter la clé de votre pays</p>
             <x-input-error class="mt-2" :messages="$errors->get('telephone')" />
