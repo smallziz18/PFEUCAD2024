@@ -83,6 +83,7 @@ class AnnonceController extends Controller
 
 
 
+
         if (!$annonce) {
             abort(404);
         }

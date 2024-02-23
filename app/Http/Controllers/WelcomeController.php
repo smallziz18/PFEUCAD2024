@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 class WelcomeController extends Controller
 {
     public function index()
-    {   $annoncestop = Annonce::with('images', 'user')
+    {
+        $annoncestop = Annonce::with('images', 'user')
         ->where('statu', 1)
-        ->orderByDesc('vue')
+        ->orderByDesc('like')
         ->take(5)
         ->get();
 
