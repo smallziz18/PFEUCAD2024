@@ -24,6 +24,9 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+        <div class="text-center mt-6">
+            <span class="text-gray-500">ou</span>
+        </div>
         <div class="w-full flex justify-center mx-2 mt-5">
             <a href="/auth/github/redirect" class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 me-2 mb-2">
                 <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
