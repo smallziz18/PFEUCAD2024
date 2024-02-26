@@ -135,10 +135,10 @@
         </div>
         <div class="pl-2 flex">
 
-            <a class="flex">
-                <x-modal-search>
-                </x-modal-search>
-            </a>
+            <div>
+               @livewire('search-component')
+            </div>
+
 
         </div>
         <div class="navlinks md:flex">

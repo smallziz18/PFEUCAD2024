@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ImageResource\Pages;
+namespace App\Filament\Resources\SignalResource\Pages;
 
-use App\Filament\Resources\ImageResource;
+use App\Filament\Resources\SignalResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListImages extends ListRecords
+class ListSignals extends ListRecords
 {
-    protected static string $resource = ImageResource::class;
+    protected static string $resource = SignalResource::class;
 
     protected function getHeaderActions(): array
     {
