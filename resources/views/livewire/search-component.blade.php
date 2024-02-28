@@ -1,9 +1,12 @@
-<div class="flex justify-between items-center">
-    <div class="flex items-center">
-        <input type="search" wire:model.live="searchTerm" class="form-control rounded border p-2 mr-2" placeholder="Rechercher ...">
-        @include('components.modal-search')
-    </div>
 
+
+<di>
+    <div class="flex justify-between items-center">
+        <div class="flex items-center">
+            <input type="search" wire:model.live="searchTerm" class="form-control rounded border p-2 mr-2" placeholder="Rechercher ...">
+            @include('components.modal-search')
+        </div>
+    </div>
     <div class="results">
         @forelse($annonces as $annonce)
             <a href="{{ url('/annonce=' . $annonce->id) }}" class="block border rounded p-2 mb-2 hover:bg-gray-100">
@@ -15,4 +18,6 @@
             @endif
         @endforelse
     </div>
-</div>
+</di>
+
+
