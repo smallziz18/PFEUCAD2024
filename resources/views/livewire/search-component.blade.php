@@ -1,18 +1,18 @@
-<div>
-    <input type="text" wire:model.lazy="searchTerm" class="form-control rounded border border-l-blue-500"  placeholder="Search...">
+<div class="flex justify-between items-center">
+    <div class="flex items-center">
+        <input type="search" wire:model.live="searchTerm" class="form-control rounded border p-2 mr-2" placeholder="Rechercher ...">
+        @include('components.modal-search')
+    </div>
 
-    <ul>
-        @foreach($results as $result)
-           @if($result && $result->count()>0)
-                <li>
-                    <a href="{{ route('annonce.show', $result->first()->id) }}">
-                        <h3>{{ $result->first()->title }}</h3>
-                        <p>{{ $result->first()->description }}</p>
-                    </a>
-                </li>
-            @else
-                <li>Aucun résultat trouvé</li>
-           @endif
-        @endforeach
-    </ul>
+    <div class="results">
+        @forelse($annonces as $annonce)
+            <a href="{{ url('/annonce=' . $annonce->id) }}" class="block border rounded p-2 mb-2 hover:bg-gray-100">
+                <p>{{ $annonce->titre }} - {{ $annonce->prix }} €</p>
+            </a>
+        @empty
+            @if(strlen($searchTerm) >= 3)
+                <p class="text-gray-500">Aucun résultat trouvé</p>
+            @endif
+        @endforelse
+    </div>
 </div>

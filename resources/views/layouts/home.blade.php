@@ -390,7 +390,7 @@ Alternatively if you want to just have a single hero
             <div class="flex flex-wrap">
                 @endif
 
-                <div class="w-full md:w-1/5 p-6 flex flex-col">
+                <div class="w-full md:w-1/5 p-6 flex flex-col m-2">
                     <a href="{{ url("annonce=". $annonce->id) }}" class="w-64 h-64">
                         @if ($annonce->images->isNotEmpty())
                             <img class="hover:grow hover:shadow-lg h-full w-full object-cover" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">

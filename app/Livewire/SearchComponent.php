@@ -9,25 +9,20 @@ class SearchComponent extends Component
 {
 
 
-    public $searchTerm = '';
     public $results = [];
-
-    public function updatedSearchTerm()
-    {
-        if (strlen($this->searchTerm) >= 3) {
-            $this->results = Annonce::where('titre', 'like', '%'.$this->searchTerm.'%')
-                ->orWhere('description', 'like', '%'.$this->searchTerm.'%')
-                ->get()
-                ->toArray();
-        } else {
-            $this->results = [];
-            dd($this->results);
-        }
-
-    }
+    public $searchTerm = '';
 
     public function render()
     {
-        return view('livewire.search-component');
+        if (strlen($this->searchTerm) >= 3) {
+            $this->results = Annonce::where('titre', 'like', '%' . $this->searchTerm . '%')->get();
+        } else {
+            // Réinitialise la variable $results si la longueur de $searchTerm est inférieure à 3
+            $this->results = [];
+        }
+
+        return view('livewire.search-component', [
+            'annonces' => $this->results,
+        ]);
     }
 }

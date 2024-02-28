@@ -22,7 +22,7 @@ class WelcomeController extends Controller
             ->where('statu', 1)
             ->whereNotIn('id', $annoncestopIds)
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(20);
 
         return view('welcome', compact('annonces','annoncestop'));
     }
