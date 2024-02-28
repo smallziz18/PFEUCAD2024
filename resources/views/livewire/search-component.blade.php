@@ -10,7 +10,8 @@
     <div class="max-h-20 overflow-auto">
         @forelse($annonces as $annonce)
             <a href="{{ url('/annonce=' . $annonce->id) }}" class="block border rounded p-2 mb-2 hover:bg-gray-100">
-                <p>{{ $annonce->titre }} - {{ $annonce->prix }} €</p>
+                <p>{{ $annonce->titre }} - {{ $annonce->prix }} FCFA</p>
+                <img class="w-9 flex" src="{{ $annonce->images->first()->url_image }}">
             </a>
         @empty
             @if(strlen($searchTerm) >= 3)

@@ -89,12 +89,13 @@
     </form>
 
     <!-- Résultats de la recherche -->
-    <ul class="mt-4">
+    <ul class="mt-4 overflow-auto">
         @if(!empty($annonces))
             @foreach($annonces as $annonce)
                 <a href="{{ url('/annonce=' . $annonce->id) }}">
-                  <p class="mb-2">{{ $annonce->titre }} - {{ $annonce->prix }} €</p>
+                  <p class="mb-2">{{ $annonce->titre }} - {{ $annonce->prix }} FCFA</p>
               </a>
+                <img class="w-9 flex" src="{{ $annonce->images->first()->url_image }}">
             @endforeach
         @else
             <li>Aucun résultat trouvé</li>

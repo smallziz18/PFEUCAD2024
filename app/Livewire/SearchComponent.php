@@ -15,7 +15,9 @@ class SearchComponent extends Component
     public function render()
     {
         if (strlen($this->searchTerm) >= 1) {
-            $this->results = Annonce::where('titre', 'like', '%' . $this->searchTerm . '%')->get();
+            $this->results = Annonce::where('titre', 'like', '%' . $this->searchTerm . '%')
+                ->with('images')
+                ->get();
         } else {
             // Réinitialise la variable $results si la longueur de $searchTerm est inférieure à 3
             $this->results = [];
