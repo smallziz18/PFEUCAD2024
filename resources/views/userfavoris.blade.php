@@ -7,32 +7,34 @@
     <section class="bg-white py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                
+
                 @foreach($favoris as $favori)
                     <div class="flex flex-col">
                         <a href="{{ url("annonce=". $favori->annonce->id) }}">
                             @if ($favori->annonce->images->isNotEmpty())
-                                <div class="image-container" style="height: 300px;">
-                                    <img class="hover:grow hover:shadow-lg" style="height: 100%; width: 100%;" src="{{ $favori->annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                                <div class="image-container" style="height: 300px; overflow: hidden;">
+                                    @foreach($favori->annonce->images as $image)
+                                        <img class="hover:grow hover:shadow-lg inline-block" style="height: 100%; width: auto; max-width: 100%;" src="{{ $image->url_image }}" alt="Image de l'annonce">
+                                    @endforeach
                                 </div>
                             @else
                                 <div class="image-container" style="height: 300px;">
                                     <img class="hover:grow hover:shadow-lg" style="height: 100%; width: 100%;" src="Pas_d'image_disponible.svg.png" alt="Pas d'image disponible">
                                 </div>
                             @endif
-
-
-                                <div class="pt-3 flex items-center justify-between">
-                                    <p class="">{{ $favori->annonce->titre }}</p>
-                                </div>
-                                <p class="pt-1 text-gray-900">{{ $favori->annonce->prix }} FCFA</p>
-                                <p>Publié Par : {{ $favori->annonce->user->name }}</p>
-                                <p>{{ $favori->annonce->created_at->format('d/m/Y') }}</p>
-                                <form method="post" action="{{ route('favori.delete', ['id' => $favori->annonce->id]) }}" class="inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer des Favoris</button>
-                                </form>
+                        </a>
+                        <div class="pt-3 flex items-center justify-between">
+                            <p class="">{{ $favori->annonce->titre }}</p>
+                        </div>
+                        <p class="pt-1 text-gray-900">{{ $favori->annonce->prix }} FCFA</p>
+                        <p>Publié Par : {{ $favori->annonce->user->name }}</p>
+                        <p>{{ $favori->annonce->created_at->format('d/m/Y') }}</p>
+                        <form method="post" action="{{ route('favori.delete', ['id' => $favori->annonce->id]) }}" class="inline">
+                            @csrf
+                            @method('delete')
+                            <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer des Favoris</button>
+                        </form>
+                    </div>
                 @endforeach
             </div>
         </div>

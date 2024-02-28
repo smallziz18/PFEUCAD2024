@@ -113,7 +113,9 @@ Route::post('/cinetpay/notify', [PaymentController::class, 'notify'])->name('cin
 Route::post('/cinetpay/return', [PaymentController::class, 'return'])->name('cinetpay.return');
 
 
-
+Route::get('/editannonce' ,function(){
+    return view('editannonce');
+});
 
 
 

@@ -112,10 +112,10 @@
 
             <div class="form-group">
                 <label for="photos" class="form-label">Photos</label>
-                <input type="file" accept="image/png, image/jpeg" id="photos" name="images[]" class="form-control" multiple>
+                <input type="file" accept="image/png, image/jpeg" id="photos" name="images[]" class="form-control" multiple required>
             </div>
 
-            <button type="submit" class="form-submit">Ajouter Produit</button>
+            <button type="submit" class="form-submit">Ajouter Ajouter</button>
         </form>
     </div>
 
