@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ProviderController;
+use App\Http\Controllers\editController;
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,9 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/userannonce', [AnnonceController::class, 'store'])->name('annonces.store');
 
 });
+Route::get('/userannonce{id}',[editController::class,'show'])->name('editannonce');
+
+
 Route::get('email/verify',function (){
    return view('auth.verify-email');
 })->middleware('auth')->name('verification-notice');

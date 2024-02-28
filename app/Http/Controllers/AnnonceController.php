@@ -147,9 +147,9 @@ class AnnonceController extends Controller
         $annonce->prix= $request->input('prix');
         $annonce->categorie=$request->input('categorie');
         $annonce->save();
+        Session::flash('succes', 'Annonce modifié');
+        return redirect()->back();
 
-
-        //return redirect()->route('userannonce');
     }
 
     public function delete(Request $request){

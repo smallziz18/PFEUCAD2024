@@ -16,6 +16,7 @@
                             <form method="POST" action="{{ route('annonces.update', ['annonce' => $annonce->id]) }}" class="w-full max-w-lg mx-auto bg-white p-8 rounded shadow-md">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" name="id" value="{{$annonce->id}}">
 
                                 <div class="mb-4">
                                     <label for="titre" class="block text-gray-700 text-sm font-bold mb-2">Titre de l'annonce:</label>
