@@ -124,7 +124,7 @@
 
 <!--Nav-->
 <header>
-    <nav class="flex items-center justify-between flex-col md:flex-row px-8 mt-5">
+    <nav class=" flex items-center justify-between flex-col md:flex-row px-8 mt-5">
         <div class="mb-4 md:mb-0">
             <a class="flex items-center justify-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="">
                 <p class="mr-2 text-blue-700">Dakar Deals</p>
