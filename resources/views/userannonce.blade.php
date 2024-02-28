@@ -32,6 +32,7 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2">
+                                @include('components.update-announce-modal')
                                 <!-- Bouton pour ouvrir le formulaire de modification -->
                                 <button onclick="openModal({{ $annonce->id }})" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Modifier</button>
 
@@ -53,6 +54,6 @@
     </div>
 
     <!-- Inclure le formulaire de modification -->
-    @include('components.update-announce-modal')
+
 
 </x-app-layout>

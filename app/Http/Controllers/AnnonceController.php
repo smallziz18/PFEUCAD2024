@@ -149,7 +149,7 @@ class AnnonceController extends Controller
         $annonce->save();
 
 
-        return redirect()->route('userannonce')->with('id','');
+        //return redirect()->route('userannonce');
     }
 
     public function delete(Request $request){
