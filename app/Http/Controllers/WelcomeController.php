@@ -21,7 +21,7 @@ class WelcomeController extends Controller
         $annonces = Annonce::with('images', 'user')
             ->where('statu', 1)
             ->whereNotIn('id', $annoncestopIds)
-            ->orderByDesc('created_at')
+            ->orderBy('created_at')
             ->paginate(20);
 
         return view('welcome', compact('annonces','annoncestop'));
