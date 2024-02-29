@@ -29,6 +29,11 @@ class Annonce extends Model
         $this->expiration_date = Carbon::now()->addDays(90);
         $this->save();
     }
+    public static function deleteExpired()
+    {
+
+        self::where('expiration_date', '<', Carbon::now())->delete();
+    }
     public function favoris(): HasMany
     {
         return $this->hasMany(Favoris::class);

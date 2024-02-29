@@ -15,7 +15,6 @@ class BareDeRecherche extends Component
 
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        // Vérifie si la longueur de $searchTerm est supérieure ou égale à 3 avant de lancer la recherche
         if (!is_null($this->searchTerm) && strlen($this->searchTerm) >= 1) {
             $this->annonces = Annonce::query()
                 ->when($this->searchTerm, function ($query) {

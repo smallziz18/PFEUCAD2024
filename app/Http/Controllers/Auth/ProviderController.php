@@ -20,7 +20,6 @@ class ProviderController extends Controller
     {
         try {
 
-
         $SocialUser = Socialite::driver($provider)->stateless()->user();
 
         $user = User::where('email', $SocialUser->email)->first();
