@@ -240,7 +240,7 @@
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
 
-        <img src="pub.png" class="absolute block w-full h-full object-cover" alt="Image de l'annonce">
+        <img src="pub.jpg" class="absolute block w-full h-full object-cover" alt="Image de l'annonce">
 
     </div>
 
