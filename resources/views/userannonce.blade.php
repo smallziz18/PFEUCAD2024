@@ -8,7 +8,7 @@
     <div class="container mx-auto mt-8">
         @if(count($userannonces) > 0)
             <div class="overflow-x-auto">
-                <table class="table-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
+                <table class="table-auto bg-white dark:bg-gray-800 shadow-md rounded-lg mx-auto"> <!-- Ajoutez la classe mx-auto pour centrer le tableau -->
                     <thead>
                     <tr class="bg-gray-200 dark:bg-gray-700">
                         <th class="px-4 py-2 text-left">Titre</th>
@@ -31,9 +31,8 @@
                                     <img src="Pas_d'image_disponible.svg.png" class="w-32 h-32 object-cover">
                                 @endif
                             </td>
-                            <td class="px-4 py-2">
-
-                                <a href="{{ url("userannonce". $annonce->id) }}"  class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Modifier</a>
+                            <td class="px-4 py-2 flex items-center justify-center space-x-4"> <!-- Utilisez flexbox pour centrer les boutons et ajouter de l'espace entre eux -->
+                                <a href="{{ url("userannonce". $annonce->id) }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Modifier</a>
                                 <form action="{{ route('annonces.renew', $annonce->id) }}" method="POST">
                                     @csrf
                                     @method('POST')
@@ -44,15 +43,14 @@
                                     @method('delete')
                                     <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
                                 </form>
-                                <p>Date d'expiration : {{ $annonce->expiration_date }}</p>
-
-
+                                <p class="text-center">Date d'expiration : {{ $annonce->expiration_date }}</p> <!-- Ajoutez la classe text-center pour centrer le texte -->
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
+
         @else
             <div class="text-gray-600 dark:text-gray-300">Pas d'annonce.</div>
         @endif
