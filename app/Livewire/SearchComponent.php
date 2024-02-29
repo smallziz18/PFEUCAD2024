@@ -19,7 +19,7 @@ class SearchComponent extends Component
                 ->with('images')
                 ->get();
         } else {
-            // Réinitialise la variable $results si la longueur de $searchTerm est inférieure à 3
+
             $this->results = [];
         }
 
