@@ -8,6 +8,7 @@ use App\Models\Favoris;
 use App\Models\Image;
 use App\Models\Signal;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -46,6 +47,7 @@ class AnnonceController extends Controller
             'description' => $request->description,
             'categorie' => $request->categorie,
             'livrable'=>$request->livrable,
+            'expiration_date'=> Carbon::now()->addDays(90),
         ]);
 
         // Traitement des images téléchargées
@@ -150,6 +152,13 @@ class AnnonceController extends Controller
         Session::flash('succes', 'Annonce modifié');
         return redirect()->back();
 
+    }
+    public function renewExpiration($id)
+    {
+        $annonce = Annonce::findOrFail($id);
+        $annonce->renewExpiration();
+
+        return redirect()->back()->with('success', 'Date d\'expiration renouvelée avec succès.');
     }
 
     public function delete(Request $request){

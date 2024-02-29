@@ -34,13 +34,19 @@
                             <td class="px-4 py-2">
 
                                 <a href="{{ url("userannonce". $annonce->id) }}"  class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Modifier</a>
-
-                                <!-- Formulaire de suppression -->
+                                <form action="{{ route('annonces.renew', $annonce->id) }}" method="POST">
+                                    @csrf
+                                    @method('POST')
+                                    <button onclick="return confirm('Cette Annonce sera renouvellé pour 90 jours')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">Renouveler l'annonce</button>
+                                </form>
                                 <form method="post" action="{{ route('annonces.delete', ['id' => $annonce->id]) }}" class="inline">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Etes vous sur de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
                                 </form>
+                                <p>Date d'expiration : {{ $annonce->expiration_date }}</p>
+
+
                             </td>
                         </tr>
                     @endforeach

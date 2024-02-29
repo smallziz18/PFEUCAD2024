@@ -45,6 +45,8 @@ Route::middleware(['auth','verified'])->group(function () {
 
 });
 Route::get('/userannonce{id}',[editController::class,'show'])->name('editannonce');
+Route::post('/annonces/{id}/renew', [AnnonceController::class, 'renewExpiration'])->name('annonces.renew');
+
 
 
 Route::get('email/verify',function (){

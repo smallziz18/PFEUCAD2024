@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Carbon\Carbon;
 
 class Annonce extends Model
 {
@@ -16,12 +17,17 @@ class Annonce extends Model
 
 
     protected $fillable = [
-        'user_id', 'titre', 'description', 'prix', 'categorie', 'statu','livrable','like','vue'
+        'user_id', 'titre', 'description', 'prix', 'categorie', 'statu','livrable','like','vue','expiration_date'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function renewExpiration()
+    {
+        $this->expiration_date = Carbon::now()->addDays(90);
+        $this->save();
     }
     public function favoris(): HasMany
     {
