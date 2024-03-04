@@ -7,7 +7,7 @@
             @include('components.modal-search')
         </div>
     </div>
-    <div class="max-h-19 overflow-auto z-0">
+    <div class=" overflow-auto z-0" style="max-height: 200px">
         @forelse($annonces as $annonce)
             <a href="{{ url('/annonce=' . $annonce->id) }}" class="block border rounded p-2 mb-2 hover:bg-gray-100">
                 <p>{{ $annonce->titre }} - {{ $annonce->prix }} FCFA</p>

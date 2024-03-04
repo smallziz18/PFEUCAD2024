@@ -16,13 +16,12 @@ class WelcomeController extends Controller
         ->get();
 
 
-        $annoncestopIds = $annoncestop->pluck('id')->toArray();
+
 
         $annonces = Annonce::with('images', 'user')
             ->where('statu', 1)
-            ->whereNotIn('id', $annoncestopIds)
-            ->orderBy('created_at')
-            ->paginate(20);
+            ->orderBy('vue')
+            ->get();
 
         return view('welcome', compact('annonces','annoncestop'));
     }
