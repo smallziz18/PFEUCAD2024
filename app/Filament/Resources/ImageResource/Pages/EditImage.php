@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\SignalResource\Pages;
+namespace App\Filament\Resources\ImageResource\Pages;
 
-use App\Filament\Resources\SignalResource;
+use App\Filament\Resources\ImageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSignal extends EditRecord
+class EditImage extends EditRecord
 {
-    protected static string $resource = SignalResource::class;
+    protected static string $resource = ImageResource::class;
 
     protected function getHeaderActions(): array
     {

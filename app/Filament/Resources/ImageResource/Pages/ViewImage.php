@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Filament\Resources\SignalResource\Pages;
+namespace App\Filament\Resources\ImageResource\Pages;
 
-use App\Filament\Resources\SignalResource;
+use App\Filament\Resources\ImageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewSignal extends ViewRecord
+class ViewImage extends ViewRecord
 {
-    protected static string $resource = SignalResource::class;
+    protected static string $resource = ImageResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),
+
         ];
     }
 }

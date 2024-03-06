@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SignalResource\Pages;
-use App\Filament\Resources\SignalResource\RelationManagers;
-use App\Models\Signal;
+use App\Filament\Resources\AnnonceResource\Pages;
+use App\Filament\Resources\AnnonceResource\RelationManagers;
+use App\Models\Annonce;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SignalResource extends Resource
+class AnnonceResource extends Resource
 {
-    protected static ?string $model = Signal::class;
+    protected static ?string $model = Annonce::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,12 +23,12 @@ class SignalResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('annonce_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('nombre_signal')
-                    ->required()
-                    ->numeric(),
+
+                Forms\Components\Toggle::make('statu')
+                    ->required(),
+
+
+
             ]);
     }
 
@@ -36,20 +36,38 @@ class SignalResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('annonce_id')
+                Tables\Columns\TextColumn::make('user.name')
+                    ->numeric()
+                    ->sortable()
+                    ->searchable()
+                ,
+
+                Tables\Columns\TextColumn::make('titre')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('prix')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nombre_signal')
+                Tables\Columns\TextColumn::make('categorie')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('statu')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('like')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('livrable')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('vue')
+                    ->numeric()
+                    ->sortable()
+                ,
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ,
             ])
             ->filters([
                 //
@@ -57,16 +75,14 @@ class SignalResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-
             ]);
+
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageSignals::route('/'),
+            'index' => Pages\ManageAnnonces::route('/'),
         ];
     }
 }
