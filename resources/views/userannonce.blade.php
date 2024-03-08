@@ -26,7 +26,7 @@
                             <td class="px-4 py-2">{{ $annonce->prix }} FCFA</td>
                             <td class="px-4 py-2">
                                 @if ($annonce->images->isNotEmpty())
-                                    <img class="w-32 h-32 object-cover" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
+                                   <a> <img class="w-full h-32 object-cover sm:w-full" src="{{ $annonce->images->first()->url_image }}" alt="Image de l'annonce">
                                 @else
                                     <img src="Pas_d'image_disponible.svg.png" class="w-32 h-32 object-cover">
                                 @endif
@@ -36,13 +36,15 @@
                                 <form action="{{ route('annonces.renew', $annonce->id) }}" method="POST">
                                     @csrf
                                     @method('POST')
-                                    <button onclick="return confirm('Cette Annonce sera renouvelée pour 90 jours')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">Renouveler l'annonce</button>
+                                    <button onclick="return confirm('Cette Annonce sera renouvelée pour 90 jours')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">Renouveler</button>
                                 </form>
                                 <form method="post" action="{{ route('annonces.delete', ['id' => $annonce->id]) }}" class="inline">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Etes-vous sûr de vouloir supprimer cette annonce?')" type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">Supprimer</button>
                                 </form>
+                                <p class="">Date d'expiration : {{$annonce->expiration_date}}</p>
+
                             </td>
                         </tr>
                     @endforeach
