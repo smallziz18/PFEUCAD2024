@@ -120,7 +120,7 @@
 
 </head>
 
-<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal ">
 
 <header>
     <nav class="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-gray-800 p-6">
@@ -195,33 +195,14 @@
     </nav>
 </header>
 
-<script>
-    document.getElementById('nav-toggle').addEventListener('click', function() {
-        var navContent = document.getElementById('nav-content');
-        if (navContent.classList.contains('hidden')) {
-            navContent.classList.remove('hidden');
-        } else {
-            navContent.classList.add('hidden');
-        }
-    });
-</script>
-
-
-
-
-
-
-
-
-
 
 
 
 <div id="indicators-carousel" class="relative max-w-screen-2xl mx-auto border-2 m-16 border-solid border-amber-700" data-carousel="static">
     <!-- Carousel wrapper -->
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div class="relative  rounded-lg md:h-96">
 
-        <img src="pub.jpg" class="absolute block w-full h-full object-cover" alt="Image de l'annonce">
+        <img src="Dakar.png" class=" block w-full h-full object-fill" alt="Image de l'annonce">
 
     </div>
 
@@ -229,69 +210,7 @@
 
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const carouselItems = document.querySelectorAll('[data-carousel-item]');
-        const prevButton = document.querySelector('[data-carousel-prev]');
-        const nextButton = document.querySelector('[data-carousel-next]');
-        const indicators = document.querySelectorAll('[data-carousel-slide-to]');
-        let currentIndex = 0;
-        let intervalId;
 
-        // Function to show current slide
-        function showSlide(index) {
-            carouselItems.forEach((item, i) => {
-                if (i === index) {
-                    item.classList.add('block');
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.remove('block');
-                    item.classList.add('hidden');
-                }
-            });
-            // Update current index
-            currentIndex = index;
-            // Update indicators
-
-        }
-
-        // Function to show previous slide
-        function showPrevSlide() {
-            currentIndex = (currentIndex === 0) ? carouselItems.length - 1 : currentIndex - 1;
-            showSlide(currentIndex);
-        }
-
-        // Function to show next slide
-        function showNextSlide() {
-            currentIndex = (currentIndex === carouselItems.length - 1) ? 0 : currentIndex + 1;
-            showSlide(currentIndex);
-        }
-
-
-
-        // Event listeners for prev and next buttons
-        prevButton.addEventListener('click', showPrevSlide);
-        nextButton.addEventListener('click', showNextSlide);
-
-        // Function to start automatic scrolling
-        function startAutoScroll() {
-            intervalId = setInterval(showNextSlide, 2000); //changer image tous les 2 secondes
-        }
-
-        // Function to stop automatic scrolling
-        function stopAutoScroll() {
-            clearInterval(intervalId);
-        }
-
-        // Event listener for mouseenter and mouseleave on carousel
-        const carousel = document.getElementById('indicators-carousel');
-        carousel.addEventListener('mouseenter', stopAutoScroll);
-        carousel.addEventListener('mouseleave', startAutoScroll);
-
-        // debut du scroll auto
-        startAutoScroll();
-    });
-</script>
 
 
 

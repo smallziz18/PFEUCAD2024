@@ -33,6 +33,7 @@ class Annonce extends Model
     {
 
         self::where('expiration_date', '<', Carbon::now())->delete();
+
     }
     public function favoris(): HasMany
     {

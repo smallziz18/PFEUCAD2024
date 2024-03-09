@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                     @foreach($userannonces as $annonce)
-                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                        <tr class="border-b border-gray-200 dark:border-gray-700 text-white">
                             <td class="px-4 py-2">{{ $annonce->titre }}</td>
                             <td class="px-4 py-2">{{ Str::limit($annonce->description, 50) }}</td>
                             <td class="px-4 py-2">{{ $annonce->prix }} FCFA</td>
